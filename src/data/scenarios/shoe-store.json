@@ -1,0 +1,542 @@
+{
+  "id": "shoe-store",
+  "title": "Buying Shoes in Tokyo",
+  "emoji": "👟",
+  "language": "ja",
+  "description": "A first-time tourist shops for shoes at a Tokyo store and interacts with friendly staff.",
+  "difficulty": "beginner",
+  "duration_minutes": 7,
+  "root_node_id": "staff_greet_1",
+  "cultural_notes": [
+    "Japanese shoe sizes use the metric system (centimeters) rather than US/EU sizes.",
+    "It's common for staff to bring out shoes for customers instead of self-service.",
+    "Trying shoes indoors often involves removing your current shoes and using provided socks or slippers.",
+    "Staff usually hand items with both hands and bow slightly when speaking to customers.",
+    "Most stores politely ask if you need help but avoid being overbearing.",
+    "Many stores in Japan accept credit cards, but cash is still widely used."
+  ],
+  "nodes": {
+    "staff_greet_1": {
+      "id": "staff_greet_1",
+      "speaker": "staff",
+      "ja": "いらっしゃいませ！ご覧になりますか？",
+      "romaji": "Irasshaimase! Goran ni narimasu ka?",
+      "en": "Welcome! Would you like to take a look around?",
+      "audio_key": "staff_greet_1",
+      "options": ["customer_browse_1", "customer_help_1", "customer_ignore_1"]
+    },
+
+    "customer_browse_1": {
+      "id": "customer_browse_1",
+      "speaker": "customer",
+      "ja": "ちょっと見てみます。",
+      "romaji": "Chotto mite mimasu.",
+      "en": "I'll just take a quick look around.",
+      "audio_key": "customer_browse_1",
+      "next": "staff_check_1"
+    },
+    "customer_help_1": {
+      "id": "customer_help_1",
+      "speaker": "customer",
+      "ja": "おすすめありますか？",
+      "romaji": "Osusume arimasu ka?",
+      "en": "Do you have any recommendations?",
+      "audio_key": "customer_help_1",
+      "next": "staff_recommend_1"
+    },
+    "customer_ignore_1": {
+      "id": "customer_ignore_1",
+      "speaker": "customer",
+      "ja": "あ、大丈夫です。",
+      "romaji": "Aa, daijōbu desu.",
+      "en": "Oh, I'm okay, thanks.",
+      "audio_key": "customer_ignore_1",
+      "next": "staff_watch_1"
+    },
+
+    "staff_check_1": {
+      "id": "staff_check_1",
+      "speaker": "staff",
+      "ja": "サイズお探しですか？",
+      "romaji": "Saizu o osagashi desu ka?",
+      "en": "Are you looking for a particular size?",
+      "audio_key": "staff_check_1",
+      "options": ["customer_size_ask_1", "customer_confused_1", "customer_sameas_1"]
+    },
+
+    "staff_recommend_1": {
+      "id": "staff_recommend_1",
+      "speaker": "staff",
+      "ja": "このモデルが人気ですよ。軽くて歩きやすいです。",
+      "romaji": "Kono moderu ga ninki desu yo. Karukute aruki yasui desu.",
+      "en": "This model is popular. It's lightweight and easy to walk in.",
+      "audio_key": "staff_recommend_1",
+      "options": ["customer_interested_1", "customer_confused_1", "customer_priceask_1"]
+    },
+
+    "staff_watch_1": {
+      "id": "staff_watch_1",
+      "speaker": "staff",
+      "ja": "はい、どうぞごゆっくり。",
+      "romaji": "Hai, dōzo goyukkuri.",
+      "en": "Sure, please take your time.",
+      "audio_key": "staff_watch_1",
+      "options": ["customer_size_ask_1", "customer_leave_1"]
+    },
+
+    "customer_interested_1": {
+      "id": "customer_interested_1",
+      "speaker": "customer",
+      "ja": "それ、見せてもらえますか？",
+      "romaji": "Sore, misete moraemasu ka?",
+      "en": "Can I take a look at those?",
+      "audio_key": "customer_interested_1",
+      "next": "staff_check_1"
+    },
+    "customer_priceask_1": {
+      "id": "customer_priceask_1",
+      "speaker": "customer",
+      "ja": "おいくらですか？",
+      "romaji": "Oikura desu ka?",
+      "en": "How much are they?",
+      "audio_key": "customer_priceask_1",
+      "next": "staff_price_1"
+    },
+
+    "staff_price_1": {
+      "id": "staff_price_1",
+      "speaker": "staff",
+      "ja": "こちらのモデルは9,800円です。",
+      "romaji": "Kochira no moderu wa kyūsen happyaku en desu.",
+      "en": "This model is 9,800 yen.",
+      "audio_key": "staff_price_1",
+      "options": ["customer_interested_1", "customer_decline_1"]
+    },
+
+    "customer_size_ask_1": {
+      "id": "customer_size_ask_1",
+      "speaker": "customer",
+      "ja": "この靴、27センチありますか？",
+      "romaji": "Kono kutsu, nijū-nana-senchi arimasu ka?",
+      "en": "Do you have this shoe in 27 centimeters?",
+      "audio_key": "customer_size_ask_1",
+      "next": "staff_checkstock_1"
+    },
+    "customer_confused_1": {
+      "id": "customer_confused_1",
+      "speaker": "customer",
+      "ja": "すみません、日本のサイズがよくわかりません。",
+      "romaji": "Sumimasen, Nihon no saizu ga yoku wakarimasen.",
+      "en": "Sorry, I'm not sure about Japanese sizes.",
+      "audio_key": "customer_confused_1",
+      "next": "staff_explain_size_1"
+    },
+    "customer_sameas_1": {
+      "id": "customer_sameas_1",
+      "speaker": "customer",
+      "ja": "あの人と同じ靴ありますか？",
+      "romaji": "Ano hito to onaji kutsu arimasu ka?",
+      "en": "Do you have the same shoes as that person?",
+      "audio_key": "customer_sameas_1",
+      "next": "staff_point_1"
+    },
+
+    "staff_explain_size_1": {
+      "id": "staff_explain_size_1",
+      "speaker": "staff",
+      "ja": "日本ではセンチで表します。普段どのサイズを履かれますか？",
+      "romaji": "Nihon de wa senchi de arawashimasu. Fudan dono saizu o hakaremasu ka?",
+      "en": "In Japan, sizes are in centimeters. What size do you usually wear?",
+      "audio_key": "staff_explain_size_1",
+      "options": ["customer_us_size_1", "customer_guess_1"]
+    },
+
+    "customer_us_size_1": {
+      "id": "customer_us_size_1",
+      "speaker": "customer",
+      "ja": "アメリカだとサイズ9です。",
+      "romaji": "Amerika da to saizu nain desu.",
+      "en": "In the US, I'm a size 9.",
+      "audio_key": "customer_us_size_1",
+      "next": "staff_convert_size_1"
+    },
+    "customer_guess_1": {
+      "id": "customer_guess_1",
+      "speaker": "customer",
+      "ja": "たぶん27センチくらいだと思います。",
+      "romaji": "Tabun nijū-nana-senchi kurai da to omoimasu.",
+      "en": "I think around 27 centimeters.",
+      "audio_key": "customer_guess_1",
+      "next": "staff_checkstock_1"
+    },
+
+    "staff_convert_size_1": {
+      "id": "staff_convert_size_1",
+      "speaker": "staff",
+      "ja": "アメリカの9は約27センチですね。こちらをお試しになりますか？",
+      "romaji": "Amerika no nain wa yaku nijū-nana-senchi desu ne. Kochira o otameshi ni narimasu ka?",
+      "en": "US size 9 is about 27 cm. Would you like to try this pair?",
+      "audio_key": "staff_convert_size_1",
+      "options": ["customer_tryon_1", "customer_size_ask_1"]
+    },
+
+    "staff_point_1": {
+      "id": "staff_point_1",
+      "speaker": "staff",
+      "ja": "あ、こちらですね。同じモデルならあります。",
+      "romaji": "Aa, kochira desu ne. Onaji moderu nara arimasu.",
+      "en": "Ah, this one? We have the same model.",
+      "audio_key": "staff_point_1",
+      "options": ["customer_tryon_1", "customer_color_ask_1"]
+    },
+
+    "customer_color_ask_1": {
+      "id": "customer_color_ask_1",
+      "speaker": "customer",
+      "ja": "色違いありますか？",
+      "romaji": "Iro chigai arimasu ka?",
+      "en": "Do you have this in another color?",
+      "audio_key": "customer_color_ask_1",
+      "next": "staff_color_1"
+    },
+
+    "staff_checkstock_1": {
+      "id": "staff_checkstock_1",
+      "speaker": "staff",
+      "ja": "少々お待ちくださいね。",
+      "romaji": "Shōshō omachi kudasai ne.",
+      "en": "Please wait a moment.",
+      "audio_key": "staff_checkstock_1",
+      "options": ["customer_wait_1"]
+    },
+
+    "customer_wait_1": {
+      "id": "customer_wait_1",
+      "speaker": "customer",
+      "ja": "はい、お願いします。",
+      "romaji": "Hai, onegai shimasu.",
+      "en": "Sure, thank you.",
+      "audio_key": "customer_wait_1",
+      "next": "staff_found_1"
+    },
+
+    "staff_found_1": {
+      "id": "staff_found_1",
+      "speaker": "staff",
+      "ja": "27センチ、ありました。お試しになりますか？",
+      "romaji": "Nijū-nana-senchi arimashita. Otameshi ni narimasu ka?",
+      "en": "We have the 27 cm size. Would you like to try them on?",
+      "audio_key": "staff_found_1",
+      "options": ["customer_tryon_1", "customer_diffcolor_1", "customer_decline_1"]
+    },
+
+    "customer_tryon_1": {
+      "id": "customer_tryon_1",
+      "speaker": "customer",
+      "ja": "はい、履いてみたいです。",
+      "romaji": "Hai, haite mitai desu.",
+      "en": "Yes, I'd like to try them on.",
+      "audio_key": "customer_tryon_1",
+      "next": "staff_fitsock_1"
+    },
+
+    "customer_diffcolor_1": {
+      "id": "customer_diffcolor_1",
+      "speaker": "customer",
+      "ja": "色違いありますか？",
+      "romaji": "Iro chigai arimasu ka?",
+      "en": "Do you have this in another color?",
+      "audio_key": "customer_diffcolor_1",
+      "next": "staff_color_1"
+    },
+
+    "customer_decline_1": {
+      "id": "customer_decline_1",
+      "speaker": "customer",
+      "ja": "いいえ、見てるだけです。",
+      "romaji": "Iie, miteru dake desu.",
+      "en": "No thanks, I'm just looking.",
+      "audio_key": "customer_decline_1",
+      "next": "staff_politeexit_1"
+    },
+
+    "staff_fitsock_1": {
+      "id": "staff_fitsock_1",
+      "speaker": "staff",
+      "ja": "こちらの靴下をお使いください。",
+      "romaji": "Kochira no kutsushita o otsukai kudasai.",
+      "en": "Please use these socks for trying on.",
+      "audio_key": "staff_fitsock_1",
+      "options": ["customer_tryon_feedback_1", "customer_small_1", "customer_big_1"]
+    },
+
+    "staff_color_1": {
+      "id": "staff_color_1",
+      "speaker": "staff",
+      "ja": "黒とネイビーがございます。どちらがよろしいですか？",
+      "romaji": "Kuro to neibī ga gozaimasu. Dochira ga yoroshii desu ka?",
+      "en": "We have black and navy. Which do you prefer?",
+      "audio_key": "staff_color_1",
+      "options": ["customer_choose_black_1", "customer_choose_navy_1"]
+    },
+
+    "customer_choose_black_1": {
+      "id": "customer_choose_black_1",
+      "speaker": "customer",
+      "ja": "黒にします。",
+      "romaji": "Kuro ni shimasu.",
+      "en": "I'll go with black.",
+      "audio_key": "customer_choose_black_1",
+      "next": "staff_checkstock_1"
+    },
+    "customer_choose_navy_1": {
+      "id": "customer_choose_navy_1",
+      "speaker": "customer",
+      "ja": "ネイビーにします。",
+      "romaji": "Neibī ni shimasu.",
+      "en": "I'll go with navy.",
+      "audio_key": "customer_choose_navy_1",
+      "next": "staff_checkstock_1"
+    },
+
+    "staff_politeexit_1": {
+      "id": "staff_politeexit_1",
+      "speaker": "staff",
+      "ja": "かしこまりました。ごゆっくりどうぞ。",
+      "romaji": "Kashikomarimashita. Goyukkuri dōzo.",
+      "en": "Of course. Please look around at your leisure.",
+      "audio_key": "staff_politeexit_1",
+      "options": ["customer_leave_1"]
+    },
+
+    "customer_tryon_feedback_1": {
+      "id": "customer_tryon_feedback_1",
+      "speaker": "customer",
+      "ja": "ちょうどいい感じです！",
+      "romaji": "Chōdo ii kanji desu!",
+      "en": "They feel just right!",
+      "audio_key": "customer_tryon_feedback_1",
+      "next": "staff_buyoffer_1"
+    },
+
+    "customer_small_1": {
+      "id": "customer_small_1",
+      "speaker": "customer",
+      "ja": "ちょっときついです。",
+      "romaji": "Chotto kitsui desu.",
+      "en": "They're a bit tight.",
+      "audio_key": "customer_small_1",
+      "next": "staff_biggersize_1"
+    },
+
+    "customer_big_1": {
+      "id": "customer_big_1",
+      "speaker": "customer",
+      "ja": "ちょっと大きいです。",
+      "romaji": "Chotto ōkii desu.",
+      "en": "They're a bit big.",
+      "audio_key": "customer_big_1",
+      "next": "staff_smallersize_1"
+    },
+
+    "staff_biggersize_1": {
+      "id": "staff_biggersize_1",
+      "speaker": "staff",
+      "ja": "もう少し大きいサイズをお持ちしますね。",
+      "romaji": "Mō sukoshi ōkii saizu o omochi shimasu ne.",
+      "en": "I'll bring you a slightly larger size.",
+      "audio_key": "staff_biggersize_1",
+      "options": ["customer_wait_2"]
+    },
+
+    "staff_smallersize_1": {
+      "id": "staff_smallersize_1",
+      "speaker": "staff",
+      "ja": "では少し小さいサイズをお持ちします。",
+      "romaji": "Dewa sukoshi chiisai saizu o omochi shimasu.",
+      "en": "I'll bring you a smaller size then.",
+      "audio_key": "staff_smallersize_1",
+      "options": ["customer_wait_2"]
+    },
+
+    "customer_wait_2": {
+      "id": "customer_wait_2",
+      "speaker": "customer",
+      "ja": "お願いします。",
+      "romaji": "Onegai shimasu.",
+      "en": "Please, thank you.",
+      "audio_key": "customer_wait_2",
+      "next": "staff_back_1"
+    },
+
+    "staff_back_1": {
+      "id": "staff_back_1",
+      "speaker": "staff",
+      "ja": "こちらのサイズはいかがでしょうか？",
+      "romaji": "Kochira no saizu wa ikaga deshō ka?",
+      "en": "How does this size feel?",
+      "audio_key": "staff_back_1",
+      "options": ["customer_tryon_feedback_1", "customer_decline_2"]
+    },
+
+    "customer_decline_2": {
+      "id": "customer_decline_2",
+      "speaker": "customer",
+      "ja": "やっぱりやめときます。",
+      "romaji": "Yappari yame tokimasu.",
+      "en": "Actually, I'll pass for now.",
+      "audio_key": "customer_decline_2",
+      "next": "staff_politeexit_2"
+    },
+
+    "staff_politeexit_2": {
+      "id": "staff_politeexit_2",
+      "speaker": "staff",
+      "ja": "またのご来店をお待ちしております。",
+      "romaji": "Mata no goraiten o omachi shite orimasu.",
+      "en": "We look forward to your next visit.",
+      "audio_key": "staff_politeexit_2",
+      "options": ["customer_leave_1"]
+    },
+
+    "staff_buyoffer_1": {
+      "id": "staff_buyoffer_1",
+      "speaker": "staff",
+      "ja": "お買い上げになりますか？",
+      "romaji": "Okaige ni narimasu ka?",
+      "en": "Would you like to purchase them?",
+      "audio_key": "staff_buyoffer_1",
+      "options": ["customer_buy_1", "customer_compare_1", "customer_ask_return_1"]
+    },
+
+    "customer_buy_1": {
+      "id": "customer_buy_1",
+      "speaker": "customer",
+      "ja": "はい、これにします。",
+      "romaji": "Hai, kore ni shimasu.",
+      "en": "Yes, I'll take these.",
+      "audio_key": "customer_buy_1",
+      "next": "staff_checkout_1"
+    },
+
+    "customer_compare_1": {
+      "id": "customer_compare_1",
+      "speaker": "customer",
+      "ja": "こっちのと比べてもいいですか？",
+      "romaji": "Kocchi no to kurabete mo ii desu ka?",
+      "en": "Can I compare these with this other pair?",
+      "audio_key": "customer_compare_1",
+      "next": "staff_compare_1"
+    },
+
+    "customer_ask_return_1": {
+      "id": "customer_ask_return_1",
+      "speaker": "customer",
+      "ja": "返品できますか？",
+      "romaji": "Henpin dekimasu ka?",
+      "en": "Can I return them if they don't fit?",
+      "audio_key": "customer_ask_return_1",
+      "next": "staff_returnpolicy_1"
+    },
+
+    "staff_compare_1": {
+      "id": "staff_compare_1",
+      "speaker": "staff",
+      "ja": "もちろんです。こちらをどうぞ。",
+      "romaji": "Mochiron desu. Kochira o dōzo.",
+      "en": "Of course, here you go.",
+      "audio_key": "staff_compare_1",
+      "options": ["customer_buy_1", "customer_decline_2"]
+    },
+
+    "staff_returnpolicy_1": {
+      "id": "staff_returnpolicy_1",
+      "speaker": "staff",
+      "ja": "未使用でレシートがあれば７日以内に返品できます。",
+      "romaji": "Mishiyō de reshiito ga areba nanoka inai ni henpin dekimasu.",
+      "en": "If unused and with the receipt, you can return them within 7 days.",
+      "audio_key": "staff_returnpolicy_1",
+      "options": ["customer_buy_1", "customer_decline_2"]
+    },
+
+    "staff_checkout_1": {
+      "id": "staff_checkout_1",
+      "speaker": "staff",
+      "ja": "お会計はこちらです。お支払いは現金ですか？カードですか？",
+      "romaji": "Okaikei wa kochira desu. Oshiharai wa genkin desu ka? Kādo desu ka?",
+      "en": "The checkout is here. Will you pay by cash or card?",
+      "audio_key": "staff_checkout_1",
+      "options": ["customer_cash_1", "customer_card_1"]
+    },
+
+    "customer_cash_1": {
+      "id": "customer_cash_1",
+      "speaker": "customer",
+      "ja": "現金でお願いします。",
+      "romaji": "Genkin de onegai shimasu.",
+      "en": "Cash, please.",
+      "audio_key": "customer_cash_1",
+      "next": "staff_bag_1"
+    },
+
+    "customer_card_1": {
+      "id": "customer_card_1",
+      "speaker": "customer",
+      "ja": "カードで払います。",
+      "romaji": "Kādo de haraimasu.",
+      "en": "I'll pay by card.",
+      "audio_key": "customer_card_1",
+      "next": "staff_bag_1"
+    },
+
+    "staff_bag_1": {
+      "id": "staff_bag_1",
+      "speaker": "staff",
+      "ja": "袋にお入れしますか？",
+      "romaji": "Fukuro ni o-ire shimasu ka?",
+      "en": "Would you like a bag?",
+      "audio_key": "staff_bag_1",
+      "options": ["customer_yesbag_1", "customer_nobag_1"]
+    },
+
+    "customer_yesbag_1": {
+      "id": "customer_yesbag_1",
+      "speaker": "customer",
+      "ja": "はい、お願いします。",
+      "romaji": "Hai, onegai shimasu.",
+      "en": "Yes, please.",
+      "audio_key": "customer_yesbag_1",
+      "next": "staff_exit_1"
+    },
+
+    "customer_nobag_1": {
+      "id": "customer_nobag_1",
+      "speaker": "customer",
+      "ja": "大丈夫です。",
+      "romaji": "Daijōbu desu.",
+      "en": "No, that's okay.",
+      "audio_key": "customer_nobag_1",
+      "next": "staff_exit_1"
+    },
+
+    "staff_exit_1": {
+      "id": "staff_exit_1",
+      "speaker": "staff",
+      "ja": "ありがとうございました！",
+      "romaji": "Arigatō gozaimashita!",
+      "en": "Thank you very much!",
+      "audio_key": "staff_exit_1",
+      "options": ["customer_leave_1"]
+    },
+
+    "customer_leave_1": {
+      "id": "customer_leave_1",
+      "speaker": "customer",
+      "ja": "ありがとうございました！",
+      "romaji": "Arigatō gozaimashita!",
+      "en": "Thank you!",
+      "audio_key": "customer_leave_1",
+      "next": null
+    }
+  }
+}
