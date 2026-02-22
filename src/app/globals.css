@@ -103,3 +103,13 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* Scene intro CTA button — idle glow pulse */
+@keyframes cta-glow {
+  0%, 100% { box-shadow: 0 0 0px rgba(233, 69, 96, 0); }
+  50%       { box-shadow: 0 0 20px rgba(233, 69, 96, 0.3); }
+}
+
+.cta-glow {
+  animation: cta-glow 2s ease-in-out infinite;
+}

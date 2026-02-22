@@ -3,10 +3,11 @@
 import { use, useCallback, useEffect, useRef, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, RotateCcw } from 'lucide-react';
+import { X, Copy } from 'lucide-react';
 import { getScenario } from '@/data/index';
 import { getJourneyStats } from '@/lib/utils';
 import type { DialogueNode } from '@/data/types';
+import AudioPlayer from '@/components/conversation/AudioPlayer';
 
 interface SavedJourney {
   scenario_id: string;
@@ -14,23 +15,6 @@ interface SavedJourney {
   saved_at: string;
 }
 
-function WaveformPlaceholder() {
-  const bars = Array.from({ length: 40 }, (_, i) => ({
-    id: i,
-    height: Math.floor(Math.random() * 20) + 4,
-  }));
-  return (
-    <div className="h-12 rounded-lg flex items-center justify-center gap-[2px] overflow-hidden" style={{ background: 'rgba(255,255,255,0.05)' }}>
-      {bars.map((bar) => (
-        <div
-          key={bar.id}
-          className="rounded-full flex-shrink-0"
-          style={{ width: 2, height: bar.height, background: 'rgba(255,255,255,0.2)' }}
-        />
-      ))}
-    </div>
-  );
-}
 
 export default function PlayPage({ params }: { params: Promise<{ scenario: string }> }) {
   const { scenario: scenarioId } = use(params);
@@ -45,9 +29,10 @@ export default function PlayPage({ params }: { params: Promise<{ scenario: strin
   const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
   const [isComplete, setIsComplete] = useState(false);
   const [activeToast, setActiveToast] = useState<string | null>(null);
-  const [activeSpeed, setActiveSpeed] = useState<'0.75×' | '1×' | '1.25×'>('1×');
+  const [toastKey, setToastKey] = useState(0);
   const [isReplaying, setIsReplaying] = useState(false);
   const replayIndexRef = useRef(0);
+  const [showDevPanel, setShowDevPanel] = useState(false);
 
   // Dev-mode broken node reference warnings
   useEffect(() => {
@@ -56,15 +41,34 @@ export default function PlayPage({ params }: { params: Promise<{ scenario: strin
       if (node.options) {
         for (const targetId of node.options) {
           if (!scenario.nodes[targetId]) {
-            console.warn(`[drfti] Broken node reference: ${node.id} → ${targetId}`);
+            console.warn(`[drfti] ⚠️ Broken reference: node "${node.id}" → "${targetId}" does not exist`);
           }
         }
       }
-      if (node.next && node.next !== null && !scenario.nodes[node.next]) {
-        console.warn(`[drfti] Broken node reference: ${node.id} → ${node.next}`);
+      if (node.next && !scenario.nodes[node.next]) {
+        console.warn(`[drfti] ⚠️ Broken reference: node "${node.id}" → "${node.next}" does not exist`);
       }
     }
   }, [scenario]);
+
+  // Dev overlay keyboard toggle
+  useEffect(() => {
+    if (process.env.NODE_ENV !== 'development') return;
+    const handler = (e: KeyboardEvent) => {
+      if ((e.key === 'd' || e.key === 'D') && !e.metaKey && !e.ctrlKey && !e.altKey) {
+        setShowDevPanel((prev) => !prev);
+      }
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, []);
+
+  // Auto-dismiss toast after 6s; reset when new toast fires
+  useEffect(() => {
+    if (!activeToast) return;
+    const timer = setTimeout(() => setActiveToast(null), 6000);
+    return () => clearTimeout(timer);
+  }, [activeToast, toastKey]);
 
   const advanceToNode = useCallback((nodeId: string, currentPath: string[], currentJourneyPath: string[]) => {
     if (!scenario) return currentPath;
@@ -77,6 +81,7 @@ export default function PlayPage({ params }: { params: Promise<{ scenario: strin
     setSelectedOptionId(null);
 
     if (node.cultural_note) {
+      setToastKey((k) => k + 1);
       setActiveToast(node.cultural_note);
     }
     if (node.next === null) {
@@ -120,6 +125,7 @@ export default function PlayPage({ params }: { params: Promise<{ scenario: strin
           const newPath = [...prev, nodeId];
           setCurrentNodeId(nodeId);
           if (scenario.nodes[nodeId]?.cultural_note) {
+            setToastKey((k) => k + 1);
             setActiveToast(scenario.nodes[nodeId].cultural_note!);
           }
           if (scenario.nodes[nodeId]?.next === null) {
@@ -227,19 +233,31 @@ export default function PlayPage({ params }: { params: Promise<{ scenario: strin
       <AnimatePresence>
         {activeToast && (
           <motion.div
-            className="fixed left-0 right-0 z-10 flex items-start gap-3 px-6 py-3 cursor-pointer"
+            key={toastKey}
+            className="fixed left-0 right-0 z-10 overflow-hidden cursor-pointer"
             style={{
               top: isReplaying ? 88 : 52,
               background: '#1A1A28',
               borderBottom: '1px solid rgba(255,255,255,0.08)',
             }}
-            initial={{ y: -40, opacity: 0 }}
+            initial={{ y: -60, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -40, opacity: 0 }}
+            exit={{ y: -60, opacity: 0 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
             onClick={() => setActiveToast(null)}
           >
-            <span className="text-base flex-shrink-0">💡</span>
-            <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.7)' }}>{activeToast}</p>
+            <div className="flex items-start gap-3 px-6 py-3">
+              <span className="text-base flex-shrink-0">💡</span>
+              <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.7)' }}>{activeToast}</p>
+            </div>
+            {/* 6s drain bar */}
+            <motion.div
+              className="absolute bottom-0 left-0 h-0.5"
+              style={{ background: '#E94560' }}
+              initial={{ width: '100%' }}
+              animate={{ width: '0%' }}
+              transition={{ duration: 6, ease: 'linear' }}
+            />
           </motion.div>
         )}
       </AnimatePresence>
@@ -257,47 +275,37 @@ export default function PlayPage({ params }: { params: Promise<{ scenario: strin
               className="flex flex-col"
             >
               {/* Speaker label */}
-              <div className="flex items-center gap-2 mb-4 mt-4">
-                <div
-                  className="w-2 h-2 rounded-full flex-shrink-0"
-                  style={{ background: currentNode.speaker === 'staff' ? '#E94560' : '#60a5fa' }}
-                />
-                <span className="text-sm font-medium" style={{ color: 'rgba(255,255,255,0.5)' }}>
-                  {currentNode.speaker === 'staff' ? 'Staff' : 'You'}
-                </span>
-              </div>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentNode.speaker}
+                  className="flex items-center gap-2 mb-4 mt-4"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.15 }}
+                >
+                  <div
+                    className="w-2 h-2 rounded-full flex-shrink-0"
+                    style={{ background: currentNode.speaker === 'staff' ? '#E94560' : '#60a5fa' }}
+                  />
+                  <span className="text-sm font-medium" style={{ color: 'rgba(255,255,255,0.5)' }}>
+                    {currentNode.speaker === 'staff' ? 'Staff' : 'You'}
+                  </span>
+                </motion.div>
+              </AnimatePresence>
 
               {/* Japanese text */}
               <p className="text-4xl font-bold text-white leading-tight mb-2" style={{ fontFamily: 'var(--font-noto-sans-jp), sans-serif' }}>{currentNode.ja}</p>
               <p className="text-lg font-light mb-1" style={{ color: 'rgba(255,255,255,0.4)' }}>{currentNode.romaji}</p>
               <p className="text-sm mb-6" style={{ color: 'rgba(255,255,255,0.3)' }}>{currentNode.en}</p>
 
-              {/* Audio controls */}
-              <div className="rounded-2xl p-4 mb-6" style={{ background: '#12121A' }}>
-                <WaveformPlaceholder />
-                <div className="flex items-center justify-between mt-3">
-                  <button className="transition-colors" style={{ color: 'rgba(255,255,255,0.4)' }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.8)')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.4)')}>
-                    <RotateCcw size={20} />
-                  </button>
-                  <div className="flex gap-1">
-                    {(['0.75×', '1×', '1.25×'] as const).map((speed) => (
-                      <button
-                        key={speed}
-                        onClick={() => setActiveSpeed(speed)}
-                        className="px-3 py-1 rounded-full text-xs font-medium transition-colors"
-                        style={activeSpeed === speed
-                          ? { background: 'rgba(233,69,96,0.2)', color: '#E94560', border: '1px solid rgba(233,69,96,0.3)' }
-                          : { background: 'rgba(255,255,255,0.05)', color: 'rgba(255,255,255,0.4)', border: '1px solid rgba(255,255,255,0.1)' }
-                        }
-                      >
-                        {speed}
-                      </button>
-                    ))}
-                  </div>
-                  <div className="w-5" /> {/* spacer for mic placeholder */}
-                </div>
+              {/* Audio player */}
+              <div className="mb-6">
+                <AudioPlayer
+                  audioKey={currentNode.audio_key}
+                  language="ja"
+                  autoPlay={true}
+                />
               </div>
 
               {/* Response area */}
@@ -306,7 +314,7 @@ export default function PlayPage({ params }: { params: Promise<{ scenario: strin
                   <p className="text-xs uppercase tracking-wider mb-3" style={{ color: 'rgba(255,255,255,0.3)' }}>
                     How do you respond?
                   </p>
-                  {currentNode.options.map((optionId) => {
+                  {currentNode.options.map((optionId, i) => {
                     const optionNode = scenario.nodes[optionId];
                     if (!optionNode) return null;
                     const isSelected = selectedOptionId === optionId;
@@ -314,15 +322,18 @@ export default function PlayPage({ params }: { params: Promise<{ scenario: strin
                       <motion.div
                         key={optionId}
                         onClick={() => setSelectedOptionId(optionId)}
-                        className="p-4 mb-3 rounded-2xl cursor-pointer transition-colors duration-150"
-                        style={{
+                        className="p-4 mb-3 rounded-2xl cursor-pointer"
+                        initial={{ opacity: 0, y: 12 }}
+                        animate={{
+                          opacity: 1,
+                          y: 0,
                           background: isSelected ? 'rgba(233,69,96,0.05)' : '#12121A',
-                          border: isSelected
-                            ? '1px solid rgba(233,69,96,0.5)'
-                            : '1px solid rgba(255,255,255,0.08)',
+                          borderColor: isSelected ? 'rgba(233,69,96,0.5)' : 'rgba(255,255,255,0.08)',
                         }}
-                        whileHover={{ borderColor: isSelected ? 'rgba(233,69,96,0.5)' : 'rgba(255,255,255,0.2)' }}
-                        whileTap={{ scale: 0.99 }}
+                        transition={{ duration: 0.2, delay: i * 0.06 }}
+                        style={{ border: '1px solid rgba(255,255,255,0.08)' }}
+                        whileHover={{ scale: 1.01, borderColor: isSelected ? 'rgba(233,69,96,0.5)' : 'rgba(255,255,255,0.2)' }}
+                        whileTap={{ scale: 0.98 }}
                       >
                         <p className="text-xl font-semibold text-white" style={{ fontFamily: 'var(--font-noto-sans-jp), sans-serif' }}>{optionNode.ja}</p>
                         <p className="text-sm mt-1" style={{ color: 'rgba(255,255,255,0.4)' }}>{optionNode.en}</p>
@@ -361,6 +372,73 @@ export default function PlayPage({ params }: { params: Promise<{ scenario: strin
         )}
       </div>
 
+      {/* Dev overlay */}
+      {process.env.NODE_ENV === 'development' && (
+        <>
+          {!showDevPanel && (
+            <button
+              className="fixed bottom-4 left-4 z-50 px-2 py-0.5 rounded-full font-mono text-xs"
+              style={{ background: 'rgba(0,0,0,0.7)', border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.4)' }}
+              onClick={() => setShowDevPanel(true)}
+            >
+              D
+            </button>
+          )}
+          <AnimatePresence>
+            {showDevPanel && (
+              <motion.div
+                className="fixed bottom-4 left-4 z-50 rounded-xl p-4 font-mono text-xs max-w-xs"
+                style={{ background: 'rgba(0,0,0,0.9)', border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.7)', backdropFilter: 'blur(8px)' }}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 8 }}
+                transition={{ duration: 0.15 }}
+              >
+                <div className="flex items-center justify-between mb-3">
+                  <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: 10, letterSpacing: '0.1em' }}>DEV · press D to close</span>
+                  <button onClick={() => setShowDevPanel(false)} style={{ color: 'rgba(255,255,255,0.3)' }}>
+                    <X size={12} />
+                  </button>
+                </div>
+                <div className="space-y-1.5">
+                  <div>
+                    <span style={{ color: 'rgba(255,255,255,0.35)' }}>node </span>
+                    <span style={{ color: '#E94560' }}>{currentNodeId || '—'}</span>
+                  </div>
+                  <div>
+                    <span style={{ color: 'rgba(255,255,255,0.35)' }}>speaker </span>
+                    <span>{currentNode?.speaker ?? '—'}</span>
+                  </div>
+                  {currentNode?.options ? (
+                    <div>
+                      <span style={{ color: 'rgba(255,255,255,0.35)' }}>options </span>
+                      <span>[{currentNode.options.join(', ')}]</span>
+                    </div>
+                  ) : (
+                    <div>
+                      <span style={{ color: 'rgba(255,255,255,0.35)' }}>next </span>
+                      <span>{currentNode?.next === null ? 'null (end)' : (currentNode?.next ?? '—')}</span>
+                    </div>
+                  )}
+                  <div>
+                    <span style={{ color: 'rgba(255,255,255,0.35)' }}>path len </span>
+                    <span>{journeyPath.length}</span>
+                  </div>
+                </div>
+                <button
+                  className="mt-3 w-full py-1.5 rounded-lg flex items-center justify-center gap-1.5"
+                  style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.5)', fontSize: 10 }}
+                  onClick={() => navigator.clipboard.writeText(JSON.stringify(journeyPath))}
+                >
+                  <Copy size={10} />
+                  Copy Path
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </>
+      )}
+
       {/* Journey complete overlay */}
       <AnimatePresence>
         {isComplete && (
@@ -371,12 +449,37 @@ export default function PlayPage({ params }: { params: Promise<{ scenario: strin
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
           >
-            <span className="text-8xl">{scenario.emoji}</span>
-            <p className="text-3xl font-bold text-white mt-4">✓ Scene complete</p>
-            <p className="mt-2" style={{ color: '#6B7280' }}>
+            <motion.span
+              className="text-8xl"
+              initial={{ scale: 0 }}
+              animate={{ scale: [0, 1.1, 1] }}
+              transition={{ duration: 0.4, delay: 0.1, ease: 'easeOut' }}
+            >
+              {scenario.emoji}
+            </motion.span>
+            <motion.p
+              className="text-3xl font-bold text-white mt-4"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.2 }}
+            >
+              ✓ Scene complete
+            </motion.p>
+            <motion.p
+              className="mt-2"
+              style={{ color: '#6B7280' }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.3 }}
+            >
               {exchanges} {exchanges === 1 ? 'exchange' : 'exchanges'}
-            </p>
-            <div className="mt-10 flex flex-col gap-3 w-full max-w-sm">
+            </motion.p>
+            <motion.div
+              className="mt-10 flex flex-col gap-3 w-full max-w-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3, delay: 0.5 }}
+            >
               <button
                 onClick={handleSaveAndReplay}
                 className="w-full h-12 rounded-xl font-semibold text-white transition-colors duration-150"
@@ -395,7 +498,7 @@ export default function PlayPage({ params }: { params: Promise<{ scenario: strin
               >
                 Try a Different Path
               </button>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
