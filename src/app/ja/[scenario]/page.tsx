@@ -122,10 +122,10 @@ export default function ScenarioPage({ params }: { params: Promise<{ scenario: s
         )}
         <button
           onClick={() => router.push(`/ja/${scenarioId}/play`)}
-          className="w-full h-12 rounded-xl font-semibold text-white transition-colors duration-150"
+          className="w-full h-12 rounded-xl font-semibold text-white transition-colors duration-150 cta-glow"
           style={{ background: '#E94560' }}
-          onMouseEnter={(e) => (e.currentTarget.style.background = '#d63a52')}
-          onMouseLeave={(e) => (e.currentTarget.style.background = '#E94560')}
+          onMouseEnter={(e) => { e.currentTarget.style.background = '#d63a52'; e.currentTarget.style.animation = 'none'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.background = '#E94560'; e.currentTarget.style.animation = ''; }}
         >
           Start Scene
         </button>

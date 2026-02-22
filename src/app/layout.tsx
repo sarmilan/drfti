@@ -27,9 +27,16 @@ export const metadata: Metadata = {
     description:
       "Practice real Japanese and French conversations for tourist scenarios.",
   },
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "drfti",
+  },
   icons: {
     icon:
       "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍜</text></svg>",
+    apple: "/icons/icon-192.png",
   },
 };
 

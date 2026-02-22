@@ -21,7 +21,11 @@
       "romaji": "Irasshaimase~!",
       "en": "Welcome!",
       "cultural_note": "You don't need to reply to this. A nod or small bow is totally natural.",
-      "options": ["enter_2", "enter_3"]
+      "options": [
+        "enter_2",
+        "enter_3"
+      ],
+      "audio_key": "staff_enter_1"
     },
     "enter_2": {
       "id": "enter_2",
@@ -29,7 +33,8 @@
       "ja": "こんにちは。",
       "romaji": "Konnichiwa.",
       "en": "Hello.",
-      "next": "seat_ask_1"
+      "next": "seat_ask_1",
+      "audio_key": "customer_enter_2"
     },
     "enter_3": {
       "id": "enter_3",
@@ -37,7 +42,8 @@
       "ja": "（会釈して黙って入る）",
       "romaji": "(Nod and walk in quietly.)",
       "en": "(You just nod and walk in.)",
-      "next": "seat_ask_1"
+      "next": "seat_ask_1",
+      "audio_key": "customer_enter_3"
     },
     "seat_ask_1": {
       "id": "seat_ask_1",
@@ -45,7 +51,12 @@
       "ja": "おひとり様ですか？",
       "romaji": "Ohitori-sama desu ka?",
       "en": "Just one person?",
-      "options": ["seat_ans_1", "seat_ans_2", "seat_ans_3"]
+      "options": [
+        "seat_ans_1",
+        "seat_ans_2",
+        "seat_ans_3"
+      ],
+      "audio_key": "staff_seat_ask_1"
     },
     "seat_ans_1": {
       "id": "seat_ans_1",
@@ -53,7 +64,8 @@
       "ja": "はい、一人です。",
       "romaji": "Hai, hitori desu.",
       "en": "Yes, just one.",
-      "next": "seat_type_1"
+      "next": "seat_type_1",
+      "audio_key": "customer_seat_ans_1"
     },
     "seat_ans_2": {
       "id": "seat_ans_2",
@@ -61,7 +73,8 @@
       "ja": "二人です。",
       "romaji": "Futari desu.",
       "en": "Two people.",
-      "next": "seat_type_1"
+      "next": "seat_type_1",
+      "audio_key": "customer_seat_ans_2"
     },
     "seat_ans_3": {
       "id": "seat_ans_3",
@@ -69,7 +82,8 @@
       "ja": "えっと…英語大丈夫ですか？",
       "romaji": "Etto… eigo daijoubu desu ka?",
       "en": "Um… is English okay?",
-      "next": "seat_type_2"
+      "next": "seat_type_2",
+      "audio_key": "customer_seat_ans_3"
     },
     "seat_type_1": {
       "id": "seat_type_1",
@@ -78,7 +92,11 @@
       "romaji": "Kauntaa aitemasu. Shokken saki ni onegai shimasu.",
       "en": "The counter is open. Please buy a ticket first.",
       "cultural_note": "Head to the vending machine on your right. Pick your ramen, pay, and bring the ticket to your seat.",
-      "options": ["ticket_guide_1", "ticket_guide_2"]
+      "options": [
+        "ticket_guide_1",
+        "ticket_guide_2"
+      ],
+      "audio_key": "staff_seat_type_1"
     },
     "seat_type_2": {
       "id": "seat_type_2",
@@ -86,7 +104,11 @@
       "ja": "少しなら大丈夫です。先にこちらで食券お願いします。",
       "romaji": "Sukoshi nara daijoubu desu. Saki ni kochira de shokken onegai shimasu.",
       "en": "A little English is okay. First, please get a meal ticket here.",
-      "options": ["ticket_guide_1", "ticket_help_1"]
+      "options": [
+        "ticket_guide_1",
+        "ticket_help_1"
+      ],
+      "audio_key": "staff_seat_type_2"
     },
     "ticket_guide_1": {
       "id": "ticket_guide_1",
@@ -94,7 +116,8 @@
       "ja": "食券ですね？わかりました。",
       "romaji": "Shokken desu ne? Wakarimashita.",
       "en": "A ticket, right? Got it.",
-      "next": "ticket_machine_1"
+      "next": "ticket_machine_1",
+      "audio_key": "customer_ticket_guide_1"
     },
     "ticket_guide_2": {
       "id": "ticket_guide_2",
@@ -102,7 +125,8 @@
       "ja": "すみません、初めてで…どうすればいいですか？",
       "romaji": "Sumimasen, hajimete de… dousureba ii desu ka?",
       "en": "Sorry, it's my first time… what should I do?",
-      "next": "ticket_help_1"
+      "next": "ticket_help_1",
+      "audio_key": "customer_ticket_guide_2"
     },
     "ticket_help_1": {
       "id": "ticket_help_1",
@@ -110,7 +134,12 @@
       "ja": "大丈夫ですよ。一番上が一番人気です。ここ押して、お金入れてください。",
       "romaji": "Daijoubu desu yo. Ichiban ue ga ichiban ninki desu. Koko oshite, okane irete kudasai.",
       "en": "No worries. The top one is the most popular. Press here and put in your money.",
-      "options": ["ticket_choice_1", "ticket_choice_2", "ticket_choice_3"]
+      "options": [
+        "ticket_choice_1",
+        "ticket_choice_2",
+        "ticket_choice_3"
+      ],
+      "audio_key": "staff_ticket_help_1"
     },
     "ticket_machine_1": {
       "id": "ticket_machine_1",
@@ -118,7 +147,12 @@
       "ja": "こちらの食券機でお願いします。人気はこの醤油ラーメンです。",
       "romaji": "Kochira no shokken-ki de onegai shimasu. Ninki wa kono shouyu raamen desu.",
       "en": "Please use this ticket machine. Our most popular is this soy-sauce ramen.",
-      "options": ["ticket_choice_1", "ticket_choice_2", "ticket_choice_3"]
+      "options": [
+        "ticket_choice_1",
+        "ticket_choice_2",
+        "ticket_choice_3"
+      ],
+      "audio_key": "staff_ticket_machine_1"
     },
     "ticket_choice_1": {
       "id": "ticket_choice_1",
@@ -126,7 +160,8 @@
       "ja": "おすすめはどれですか？",
       "romaji": "Osusume wa dore desu ka?",
       "en": "Which one do you recommend?",
-      "next": "ticket_help_rec_1"
+      "next": "ticket_help_rec_1",
+      "audio_key": "customer_ticket_choice_1"
     },
     "ticket_choice_2": {
       "id": "ticket_choice_2",
@@ -134,7 +169,8 @@
       "ja": "この醤油ラーメンにします。",
       "romaji": "Kono shouyu raamen ni shimasu.",
       "en": "I'll have this soy-sauce ramen.",
-      "next": "ticket_done_1"
+      "next": "ticket_done_1",
+      "audio_key": "customer_ticket_choice_2"
     },
     "ticket_choice_3": {
       "id": "ticket_choice_3",
@@ -142,7 +178,8 @@
       "ja": "辛いラーメンはありますか？",
       "romaji": "Karai raamen wa arimasu ka?",
       "en": "Do you have spicy ramen?",
-      "next": "ticket_spicy_1"
+      "next": "ticket_spicy_1",
+      "audio_key": "customer_ticket_choice_3"
     },
     "ticket_help_rec_1": {
       "id": "ticket_help_rec_1",
@@ -150,7 +187,11 @@
       "ja": "こちらの特製ラーメンが一番出てますね。味は濃いめです。",
       "romaji": "Kochira no tokusei raamen ga ichiban detemasu ne. Aji wa koime desu.",
       "en": "This special ramen sells the most. The flavor is on the richer side.",
-      "options": ["ticket_rec_decide_1", "ticket_rec_decide_2"]
+      "options": [
+        "ticket_rec_decide_1",
+        "ticket_rec_decide_2"
+      ],
+      "audio_key": "staff_ticket_help_rec_1"
     },
     "ticket_rec_decide_1": {
       "id": "ticket_rec_decide_1",
@@ -158,7 +199,8 @@
       "ja": "じゃあ、それにします。",
       "romaji": "Jaa, sore ni shimasu.",
       "en": "Okay, I'll take that.",
-      "next": "ticket_done_1"
+      "next": "ticket_done_1",
+      "audio_key": "customer_ticket_rec_decide_1"
     },
     "ticket_rec_decide_2": {
       "id": "ticket_rec_decide_2",
@@ -166,7 +208,8 @@
       "ja": "もう少しあっさりしたのはありますか？",
       "romaji": "Mou sukoshi assari shita no wa arimasu ka?",
       "en": "Do you have something a bit lighter?",
-      "next": "ticket_light_1"
+      "next": "ticket_light_1",
+      "audio_key": "customer_ticket_rec_decide_2"
     },
     "ticket_light_1": {
       "id": "ticket_light_1",
@@ -175,7 +218,10 @@
       "romaji": "Kono shio raamen ga assari-me desu. Gaikoku no kata ni mo ninki desu yo.",
       "en": "This salt ramen is lighter. It's popular with visitors too.",
       "next": "ticket_done_1",
-      "options": ["ticket_done_confirm"]
+      "options": [
+        "ticket_done_confirm"
+      ],
+      "audio_key": "staff_ticket_light_1"
     },
     "ticket_done_confirm": {
       "id": "ticket_done_confirm",
@@ -183,7 +229,8 @@
       "ja": "それにします。ありがとう。",
       "romaji": "Sore ni shimasu. Arigatou.",
       "en": "I'll take that. Thank you.",
-      "next": "ticket_done_1"
+      "next": "ticket_done_1",
+      "audio_key": "customer_ticket_done_confirm"
     },
     "ticket_spicy_1": {
       "id": "ticket_spicy_1",
@@ -191,7 +238,11 @@
       "ja": "はい、この辛味噌ラーメンが辛めです。結構辛いですけど大丈夫ですか？",
       "romaji": "Hai, kono kara-miso raamen ga karame desu. Kekkou karai desu kedo daijoubu desu ka?",
       "en": "Yes, this spicy miso ramen is hot. It's pretty spicy — is that okay?",
-      "options": ["ticket_spicy_ok", "ticket_spicy_mild"]
+      "options": [
+        "ticket_spicy_ok",
+        "ticket_spicy_mild"
+      ],
+      "audio_key": "staff_ticket_spicy_1"
     },
     "ticket_spicy_ok": {
       "id": "ticket_spicy_ok",
@@ -199,7 +250,8 @@
       "ja": "大丈夫です。それにします。",
       "romaji": "Daijoubu desu. Sore ni shimasu.",
       "en": "That's fine. I'll take it.",
-      "next": "ticket_done_1"
+      "next": "ticket_done_1",
+      "audio_key": "customer_ticket_spicy_ok"
     },
     "ticket_spicy_mild": {
       "id": "ticket_spicy_mild",
@@ -207,7 +259,8 @@
       "ja": "うーん、少し辛いくらいがいいです。",
       "romaji": "Uun, sukoshi karai kurai ga ii desu.",
       "en": "Hmm, I'd like just a little spicy.",
-      "next": "ticket_spicy_suggest"
+      "next": "ticket_spicy_suggest",
+      "audio_key": "customer_ticket_spicy_mild"
     },
     "ticket_spicy_suggest": {
       "id": "ticket_spicy_suggest",
@@ -216,7 +269,10 @@
       "romaji": "Jaa, futsuu no miso ni karasa topping sukuname ni shimashou ka.",
       "en": "Then how about regular miso with just a small spicy topping?",
       "next": "ticket_done_1",
-      "options": ["ticket_spicy_suggest_ok"]
+      "options": [
+        "ticket_spicy_suggest_ok"
+      ],
+      "audio_key": "staff_ticket_spicy_suggest"
     },
     "ticket_spicy_suggest_ok": {
       "id": "ticket_spicy_suggest_ok",
@@ -224,7 +280,8 @@
       "ja": "はい、それで。",
       "romaji": "Hai, sore de.",
       "en": "Yes, that works.",
-      "next": "ticket_done_1"
+      "next": "ticket_done_1",
+      "audio_key": "customer_ticket_spicy_suggest_ok"
     },
     "ticket_done_1": {
       "id": "ticket_done_1",
@@ -232,7 +289,11 @@
       "ja": "ありがとうございます。カウンター空いてるので、どうぞお好きな席へ。",
       "romaji": "Arigatou gozaimasu. Kauntaa aiteru no de, douzo osuki na seki e.",
       "en": "Thank you. Counter seats are open — please sit wherever you like.",
-      "options": ["seat_sit_1", "seat_sit_2"]
+      "options": [
+        "seat_sit_1",
+        "seat_sit_2"
+      ],
+      "audio_key": "staff_ticket_done_1"
     },
     "seat_sit_1": {
       "id": "seat_sit_1",
@@ -240,7 +301,8 @@
       "ja": "（カウンターに座って食券を出す）お願いします。",
       "romaji": "(Sit at counter and hand over ticket.) Onegai shimasu.",
       "en": "(You sit and place your ticket on the counter.) Here you go.",
-      "next": "order_confirm_1"
+      "next": "order_confirm_1",
+      "audio_key": "customer_seat_sit_1"
     },
     "seat_sit_2": {
       "id": "seat_sit_2",
@@ -248,7 +310,8 @@
       "ja": "水はセルフですか？",
       "romaji": "Mizu wa serufu desu ka?",
       "en": "Is water self-serve?",
-      "next": "water_info_1"
+      "next": "water_info_1",
+      "audio_key": "customer_seat_sit_2"
     },
     "water_info_1": {
       "id": "water_info_1",
@@ -257,7 +320,8 @@
       "romaji": "Omizu wa oku no potto kara gojiyuu ni douzo.",
       "en": "Please help yourself to water from the pot in the back.",
       "cultural_note": "Water and sometimes condiments (sesame, pepper, soy sauce) are usually self-serve in ramen shops.",
-      "next": "seat_sit_1"
+      "next": "seat_sit_1",
+      "audio_key": "staff_water_info_1"
     },
     "order_confirm_1": {
       "id": "order_confirm_1",
@@ -266,7 +330,12 @@
       "romaji": "Tokusei miso raamen desu ne. Men no katasa dou shimasu ka?",
       "en": "Special miso ramen. How would you like the noodles?",
       "cultural_note": "固め (katame) = firm, ふつう (futsuu) = normal, やわらかめ (yawarakame) = soft. First-timers usually go ふつう.",
-      "options": ["noodle_ans_1", "noodle_ans_2", "noodle_ans_3"]
+      "options": [
+        "noodle_ans_1",
+        "noodle_ans_2",
+        "noodle_ans_3"
+      ],
+      "audio_key": "staff_order_confirm_1"
     },
     "noodle_ans_1": {
       "id": "noodle_ans_1",
@@ -274,7 +343,8 @@
       "ja": "おすすめでお願いします。",
       "romaji": "Osusume de onegai shimasu.",
       "en": "Whichever you recommend, please.",
-      "next": "noodle_staff_1"
+      "next": "noodle_staff_1",
+      "audio_key": "customer_noodle_ans_1"
     },
     "noodle_ans_2": {
       "id": "noodle_ans_2",
@@ -282,7 +352,8 @@
       "ja": "ふつうで。",
       "romaji": "Futsuu de.",
       "en": "Normal, please.",
-      "next": "noodle_staff_2"
+      "next": "noodle_staff_2",
+      "audio_key": "customer_noodle_ans_2"
     },
     "noodle_ans_3": {
       "id": "noodle_ans_3",
@@ -290,7 +361,8 @@
       "ja": "すみません、あまりわかりません。ふつうがいいです。",
       "romaji": "Sumimasen, amari wakarimasen. Futsuu ga ii desu.",
       "en": "Sorry, I'm not sure. Normal is fine.",
-      "next": "noodle_staff_2"
+      "next": "noodle_staff_2",
+      "audio_key": "customer_noodle_ans_3"
     },
     "noodle_staff_1": {
       "id": "noodle_staff_1",
@@ -298,7 +370,8 @@
       "ja": "じゃあ、普通でお出ししますね。",
       "romaji": "Jaa, futsuu de odashi shimasu ne.",
       "en": "Alright, I'll do normal.",
-      "next": "garlic_q_1"
+      "next": "garlic_q_1",
+      "audio_key": "staff_noodle_staff_1"
     },
     "noodle_staff_2": {
       "id": "noodle_staff_2",
@@ -306,7 +379,8 @@
       "ja": "はい、麺は普通でお作りします。",
       "romaji": "Hai, men wa futsuu de otsukuri shimasu.",
       "en": "Sure, normal noodles it is.",
-      "next": "garlic_q_1"
+      "next": "garlic_q_1",
+      "audio_key": "staff_noodle_staff_2"
     },
     "garlic_q_1": {
       "id": "garlic_q_1",
@@ -314,7 +388,12 @@
       "ja": "ニンニク入れても大丈夫ですか？苦手でしたら抜きます。",
       "romaji": "Ninniku irete mo daijoubu desu ka? Nigate deshitara nukimasu.",
       "en": "Is garlic okay? If you don't like it, I can leave it out.",
-      "options": ["garlic_ans_1", "garlic_ans_2", "garlic_ans_3"]
+      "options": [
+        "garlic_ans_1",
+        "garlic_ans_2",
+        "garlic_ans_3"
+      ],
+      "audio_key": "staff_garlic_q_1"
     },
     "garlic_ans_1": {
       "id": "garlic_ans_1",
@@ -322,7 +401,8 @@
       "ja": "大丈夫です。入れてください。",
       "romaji": "Daijoubu desu. Irete kudasai.",
       "en": "Fine by me. Please add it.",
-      "next": "wait_1"
+      "next": "wait_1",
+      "audio_key": "customer_garlic_ans_1"
     },
     "garlic_ans_2": {
       "id": "garlic_ans_2",
@@ -330,7 +410,8 @@
       "ja": "少なめでお願いします。",
       "romaji": "Sukuname de onegai shimasu.",
       "en": "Just a little, please.",
-      "next": "wait_1"
+      "next": "wait_1",
+      "audio_key": "customer_garlic_ans_2"
     },
     "garlic_ans_3": {
       "id": "garlic_ans_3",
@@ -338,7 +419,8 @@
       "ja": "すみません、ニンニク抜きで。",
       "romaji": "Sumimasen, ninniku nuki de.",
       "en": "Sorry, no garlic please.",
-      "next": "wait_1"
+      "next": "wait_1",
+      "audio_key": "customer_garlic_ans_3"
     },
     "wait_1": {
       "id": "wait_1",
@@ -346,7 +428,11 @@
       "ja": "はい、少々お待ちください。",
       "romaji": "Hai, shoushou omachi kudasai.",
       "en": "Sure, please wait a moment.",
-      "options": ["smalltalk_option_1", "food_arrive_1"]
+      "options": [
+        "smalltalk_option_1",
+        "food_arrive_1"
+      ],
+      "audio_key": "staff_wait_1"
     },
     "smalltalk_option_1": {
       "id": "smalltalk_option_1",
@@ -354,7 +440,8 @@
       "ja": "すみません、Wi-Fiはありますか？",
       "romaji": "Sumimasen, wai-fai wa arimasu ka?",
       "en": "Excuse me, do you have Wi-Fi?",
-      "next": "smalltalk_wifi_1"
+      "next": "smalltalk_wifi_1",
+      "audio_key": "customer_smalltalk_option_1"
     },
     "smalltalk_wifi_1": {
       "id": "smalltalk_wifi_1",
@@ -362,7 +449,8 @@
       "ja": "すみません、Wi-Fiはないんですよ。",
       "romaji": "Sumimasen, wai-fai wa nain desu yo.",
       "en": "Sorry, we don't have Wi-Fi.",
-      "next": "food_arrive_1"
+      "next": "food_arrive_1",
+      "audio_key": "staff_smalltalk_wifi_1"
     },
     "food_arrive_1": {
       "id": "food_arrive_1",
@@ -370,7 +458,11 @@
       "ja": "お待たせしました〜、特製味噌ラーメンです。",
       "romaji": "Omatase shimashita~, tokusei miso raamen desu.",
       "en": "Sorry for the wait — here's your special miso ramen!",
-      "options": ["food_react_1", "food_react_2"]
+      "options": [
+        "food_react_1",
+        "food_react_2"
+      ],
+      "audio_key": "staff_food_arrive_1"
     },
     "food_react_1": {
       "id": "food_react_1",
@@ -379,7 +471,8 @@
       "romaji": "Waa, oishisou. Itadakimasu.",
       "en": "Wow, looks amazing. Let's eat.",
       "cultural_note": "いただきます (itadakimasu) is said before eating — like giving thanks for the meal. Always a good move.",
-      "next": "eating_1"
+      "next": "eating_1",
+      "audio_key": "customer_food_react_1"
     },
     "food_react_2": {
       "id": "food_react_2",
@@ -387,7 +480,8 @@
       "ja": "すみません、箸もう一膳もらえますか？",
       "romaji": "Sumimasen, hashi mou ichizen moraemasu ka?",
       "en": "Excuse me, could I get another pair of chopsticks?",
-      "next": "chopsticks_1"
+      "next": "chopsticks_1",
+      "audio_key": "customer_food_react_2"
     },
     "chopsticks_1": {
       "id": "chopsticks_1",
@@ -395,7 +489,8 @@
       "ja": "はい、どうぞ。",
       "romaji": "Hai, douzo.",
       "en": "Sure, here you go.",
-      "next": "eating_1"
+      "next": "eating_1",
+      "audio_key": "staff_chopsticks_1"
     },
     "eating_1": {
       "id": "eating_1",
@@ -403,7 +498,11 @@
       "ja": "味薄かったりしたら、言ってくださいね。",
       "romaji": "Aji usukattari shitara, itte kudasai ne.",
       "en": "If the flavor's too light or anything, just say so.",
-      "options": ["eating_reply_1", "eating_reply_2"]
+      "options": [
+        "eating_reply_1",
+        "eating_reply_2"
+      ],
+      "audio_key": "staff_eating_1"
     },
     "eating_reply_1": {
       "id": "eating_reply_1",
@@ -411,7 +510,8 @@
       "ja": "はい、大丈夫です。ありがとうございます。",
       "romaji": "Hai, daijoubu desu. Arigatou gozaimasu.",
       "en": "I'm good, thank you.",
-      "next": "after_eat_1"
+      "next": "after_eat_1",
+      "audio_key": "customer_eating_reply_1"
     },
     "eating_reply_2": {
       "id": "eating_reply_2",
@@ -419,7 +519,8 @@
       "ja": "すごく美味しいです！",
       "romaji": "Sugoku oishii desu!",
       "en": "It's really delicious!",
-      "next": "after_eat_1"
+      "next": "after_eat_1",
+      "audio_key": "customer_eating_reply_2"
     },
     "after_eat_1": {
       "id": "after_eat_1",
@@ -428,7 +529,8 @@
       "romaji": "(Tabe owaru) Gochisousama deshita.",
       "en": "(You finish eating.) Thank you for the meal.",
       "cultural_note": "ごちそうさまでした is said when you finish eating. Staff genuinely appreciate hearing it.",
-      "next": "pay_timing_1"
+      "next": "pay_timing_1",
+      "audio_key": "customer_after_eat_1"
     },
     "pay_timing_1": {
       "id": "pay_timing_1",
@@ -436,7 +538,11 @@
       "ja": "ありがとうございます。お会計は食券そのままで大丈夫です。",
       "romaji": "Arigatou gozaimasu. Okaikei wa shokken sono mama de daijoubu desu.",
       "en": "Thank you. The ticket covers payment — you're all set.",
-      "options": ["leave_1", "extra_order_1"]
+      "options": [
+        "leave_1",
+        "extra_order_1"
+      ],
+      "audio_key": "staff_pay_timing_1"
     },
     "extra_order_1": {
       "id": "extra_order_1",
@@ -444,7 +550,8 @@
       "ja": "替え玉ってできますか？",
       "romaji": "Kaedama tte dekimasu ka?",
       "en": "Can I get extra noodles (kaedama)?",
-      "next": "extra_order_staff_1"
+      "next": "extra_order_staff_1",
+      "audio_key": "customer_extra_order_1"
     },
     "extra_order_staff_1": {
       "id": "extra_order_staff_1",
@@ -453,7 +560,11 @@
       "romaji": "Hai, kaedama arimasu. Genkin de hyaku gojuu en desu.",
       "en": "Yes, we have kaedama. It's 150 yen cash.",
       "cultural_note": "替え玉 (kaedama) is an extra serving of noodles added to your remaining broth. Very common in tonkotsu and miso shops.",
-      "options": ["extra_order_decide_1", "extra_order_decide_2"]
+      "options": [
+        "extra_order_decide_1",
+        "extra_order_decide_2"
+      ],
+      "audio_key": "staff_extra_order_staff_1"
     },
     "extra_order_decide_1": {
       "id": "extra_order_decide_1",
@@ -461,7 +572,8 @@
       "ja": "お願いします。麺は固めで。",
       "romaji": "Onegaishimasu. Men wa katame de.",
       "en": "Yes please. Noodles firm.",
-      "next": "after_eat_1"
+      "next": "after_eat_1",
+      "audio_key": "customer_extra_order_decide_1"
     },
     "extra_order_decide_2": {
       "id": "extra_order_decide_2",
@@ -469,7 +581,8 @@
       "ja": "やっぱり大丈夫です。もうお腹いっぱいです。",
       "romaji": "Yappari daijoubu desu. Mou onaka ippai desu.",
       "en": "Actually I'm okay. I'm already full.",
-      "next": "leave_1"
+      "next": "leave_1",
+      "audio_key": "customer_extra_order_decide_2"
     },
     "leave_1": {
       "id": "leave_1",
@@ -477,7 +590,8 @@
       "ja": "ごちそうさまでした。とても美味しかったです。",
       "romaji": "Gochisousama deshita. Totemo oishikatta desu.",
       "en": "Thank you, it was really good.",
-      "next": "leave_staff_1"
+      "next": "leave_staff_1",
+      "audio_key": "customer_leave_1"
     },
     "leave_staff_1": {
       "id": "leave_staff_1",
@@ -485,7 +599,8 @@
       "ja": "ありがとうございました〜！またお待ちしてます！",
       "romaji": "Arigatou gozaimashita~! Mata omachi shitemasu!",
       "en": "Thank you so much! Hope to see you again!",
-      "next": null
+      "next": null,
+      "audio_key": "staff_leave_staff_1"
     }
   }
 }

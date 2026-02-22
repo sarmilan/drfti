@@ -9,7 +9,10 @@
     "lint": "eslint",
     "build:cf": "npx @opennextjs/cloudflare build",
     "preview:cf": "npm run build:cf && npx wrangler dev",
-    "deploy:cf": "npm run build:cf && npx wrangler deploy"
+    "deploy:cf": "npm run build:cf && npx wrangler deploy",
+    "audio:manifest": "npx tsx scripts/list-audio-keys.ts",
+    "icons:generate": "npx tsx scripts/generate-icons.ts",
+    "audio:generate": "npx tsx scripts/generate-audio.ts"
   },
   "dependencies": {
     "@opennextjs/cloudflare": "^1.16.5",
@@ -32,6 +35,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "canvas": "^3.2.1",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "shadcn": "^3.8.5",
