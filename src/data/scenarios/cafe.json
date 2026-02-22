@@ -1,0 +1,541 @@
+{
+  "id": "cafe",
+  "title": "Tokyo Café Visit",
+  "emoji": "☕️",
+  "language": "ja",
+  "description": "A tourist visits a cozy Tokyo café, orders coffee, asks about food and Wi-Fi, then pays and leaves.",
+  "difficulty": "beginner",
+  "duration_minutes": 8,
+  "root_node_id": "staff_enter_1",
+  "cultural_notes": [
+    "Many Tokyo cafés expect you to order at the counter first, then take a seat — but smaller kissaten may seat you first.",
+    "Iced vs. hot drinks are always offered, even in winter.",
+    "Japanese café staff often soften their tone with sentence endings like '～ますね' or '～ですかね' to sound friendly.",
+    "It's common to ask 'Wi-Fiありますか？' (Is there Wi-Fi?) directly; most cafés will help by showing a small card with the password.",
+    "Japanese cafés usually provide water automatically ('お水サービスです').",
+    "Leaving small change in a tip jar is not expected in Japan."
+  ],
+  "nodes": {
+    "staff_enter_1": {
+      "id": "staff_enter_1",
+      "speaker": "staff",
+      "ja": "いらっしゃいませ〜。お一人ですか？",
+      "romaji": "Irasshaimase~. O-hitori desu ka?",
+      "en": "Welcome! Just one person?",
+      "audio_key": "staff_enter_1",
+      "options": ["customer_enter_1", "customer_enter_2", "customer_enter_3"]
+    },
+    "customer_enter_1": {
+      "id": "customer_enter_1",
+      "speaker": "customer",
+      "ja": "はい、一人です。",
+      "romaji": "Hai, hitori desu.",
+      "en": "Yes, just me.",
+      "audio_key": "customer_enter_1",
+      "next": "staff_seat_ask_1"
+    },
+    "customer_enter_2": {
+      "id": "customer_enter_2",
+      "speaker": "customer",
+      "ja": "テイクアウトいいですか？",
+      "romaji": "Teiku auto ii desu ka?",
+      "en": "Can I get takeout?",
+      "audio_key": "customer_enter_2",
+      "next": "staff_takeout_1"
+    },
+    "customer_enter_3": {
+      "id": "customer_enter_3",
+      "speaker": "customer",
+      "ja": "えっと、どうすればいいですか？",
+      "romaji": "Etto, dō sureba ii desu ka?",
+      "en": "Um, what should I do?",
+      "audio_key": "customer_enter_3",
+      "next": "staff_help_choice_1"
+    },
+
+    "staff_seat_ask_1": {
+      "id": "staff_seat_ask_1",
+      "speaker": "staff",
+      "ja": "こちらのカウンター席どうぞ〜。",
+      "romaji": "Kochira no kauntā seki dōzo~.",
+      "en": "Please have a seat at the counter.",
+      "audio_key": "staff_seat_ask_1",
+      "options": ["customer_sit_1", "customer_menu_ask_1"]
+    },
+    "customer_sit_1": {
+      "id": "customer_sit_1",
+      "speaker": "customer",
+      "ja": "ありがとうございます。",
+      "romaji": "Arigatō gozaimasu.",
+      "en": "Thank you.",
+      "audio_key": "customer_sit_1",
+      "next": "staff_menu_offer_1"
+    },
+    "customer_menu_ask_1": {
+      "id": "customer_menu_ask_1",
+      "speaker": "customer",
+      "ja": "メニューありますか？",
+      "romaji": "Menyū arimasu ka?",
+      "en": "Do you have a menu?",
+      "audio_key": "customer_menu_ask_1",
+      "next": "staff_menu_offer_1"
+    },
+
+    "staff_menu_offer_1": {
+      "id": "staff_menu_offer_1",
+      "speaker": "staff",
+      "ja": "はい、どうぞ。人気はカフェラテです！",
+      "romaji": "Hai, dōzo. Ninki wa kafe rate desu!",
+      "en": "Here you go. Our most popular item is the café latte!",
+      "audio_key": "staff_menu_offer_1",
+      "options": ["customer_order_1", "customer_order_2", "customer_order_3"]
+    },
+    "customer_order_1": {
+      "id": "customer_order_1",
+      "speaker": "customer",
+      "ja": "じゃあ、そのカフェラテください。",
+      "romaji": "Jā, sono kafe rate kudasai.",
+      "en": "Then, I'll have that café latte please.",
+      "audio_key": "customer_order_1",
+      "next": "staff_hot_iced_1"
+    },
+    "customer_order_2": {
+      "id": "customer_order_2",
+      "speaker": "customer",
+      "ja": "おすすめは何ですか？",
+      "romaji": "Osusume wa nan desu ka?",
+      "en": "What do you recommend?",
+      "audio_key": "customer_order_2",
+      "next": "staff_recommend_1"
+    },
+    "customer_order_3": {
+      "id": "customer_order_3",
+      "speaker": "customer",
+      "ja": "すみません、ちょっとわかりません。",
+      "romaji": "Sumimasen, chotto wakarimasen.",
+      "en": "Sorry, I'm not sure what that is.",
+      "audio_key": "customer_order_3",
+      "next": "staff_explain_drink_1"
+    },
+
+    "staff_recommend_1": {
+      "id": "staff_recommend_1",
+      "speaker": "staff",
+      "ja": "カフェラテか抹茶ラテが人気ですよ〜。",
+      "romaji": "Kafe rate ka matcha rate ga ninki desu yo~.",
+      "en": "Café latte or matcha latte are both popular!",
+      "audio_key": "staff_recommend_1",
+      "options": ["customer_order_latte_1", "customer_order_matcha_1"]
+    },
+    "customer_order_latte_1": {
+      "id": "customer_order_latte_1",
+      "speaker": "customer",
+      "ja": "じゃあ、カフェラテお願いします。",
+      "romaji": "Jā, kafe rate onegai shimasu.",
+      "en": "Then, café latte please.",
+      "audio_key": "customer_order_latte_1",
+      "next": "staff_hot_iced_1"
+    },
+    "customer_order_matcha_1": {
+      "id": "customer_order_matcha_1",
+      "speaker": "customer",
+      "ja": "抹茶ラテにします。",
+      "romaji": "Matcha rate ni shimasu.",
+      "en": "I'll go with a matcha latte.",
+      "audio_key": "customer_order_matcha_1",
+      "next": "staff_hot_iced_1"
+    },
+
+    "staff_hot_iced_1": {
+      "id": "staff_hot_iced_1",
+      "speaker": "staff",
+      "ja": "ホットとアイス、どちらにしますか？",
+      "romaji": "Hotto to aisu, dochira ni shimasu ka?",
+      "en": "Would you like it hot or iced?",
+      "audio_key": "staff_hot_iced_1",
+      "options": ["customer_hot_1", "customer_iced_1"]
+    },
+    "customer_hot_1": {
+      "id": "customer_hot_1",
+      "speaker": "customer",
+      "ja": "ホットでお願いします。",
+      "romaji": "Hotto de onegai shimasu.",
+      "en": "Hot, please.",
+      "audio_key": "customer_hot_1",
+      "next": "staff_food_offer_1"
+    },
+    "customer_iced_1": {
+      "id": "customer_iced_1",
+      "speaker": "customer",
+      "ja": "アイスでお願いします。",
+      "romaji": "Aisu de onegai shimasu.",
+      "en": "Iced, please.",
+      "audio_key": "customer_iced_1",
+      "next": "staff_food_offer_1"
+    },
+
+    "staff_food_offer_1": {
+      "id": "staff_food_offer_1",
+      "speaker": "staff",
+      "ja": "ちなみにケーキもありますよ〜。",
+      "romaji": "Chinami ni kēki mo arimasu yo~.",
+      "en": "By the way, we also have cake!",
+      "audio_key": "staff_food_offer_1",
+      "options": ["customer_food_yes_1", "customer_food_no_1", "customer_ask_whats_1"]
+    },
+    "customer_food_yes_1": {
+      "id": "customer_food_yes_1",
+      "speaker": "customer",
+      "ja": "じゃあ、チーズケーキもください。",
+      "romaji": "Jā, chīzu kēki mo kudasai.",
+      "en": "Then, I'll take a cheesecake too.",
+      "audio_key": "customer_food_yes_1",
+      "next": "staff_confirm_1"
+    },
+    "customer_food_no_1": {
+      "id": "customer_food_no_1",
+      "speaker": "customer",
+      "ja": "大丈夫です。ドリンクだけで。",
+      "romaji": "Daijōbu desu. Dorinku dake de.",
+      "en": "I'm good, just the drink.",
+      "audio_key": "customer_food_no_1",
+      "next": "staff_confirm_1"
+    },
+    "customer_ask_whats_1": {
+      "id": "customer_ask_whats_1",
+      "speaker": "customer",
+      "ja": "どんなケーキがありますか？",
+      "romaji": "Donna kēki ga arimasu ka?",
+      "en": "What kinds of cake do you have?",
+      "audio_key": "customer_ask_whats_1",
+      "next": "staff_cake_explain_1"
+    },
+
+    "staff_cake_explain_1": {
+      "id": "staff_cake_explain_1",
+      "speaker": "staff",
+      "ja": "今日はチーズケーキとガトーショコラがあります。",
+      "romaji": "Kyō wa chīzu kēki to gatō shokora ga arimasu.",
+      "en": "Today we have cheesecake and chocolate gateau.",
+      "audio_key": "staff_cake_explain_1",
+      "options": ["customer_food_yes_2", "customer_food_no_2"]
+    },
+    "customer_food_yes_2": {
+      "id": "customer_food_yes_2",
+      "speaker": "customer",
+      "ja": "じゃあチーズケーキください。",
+      "romaji": "Jā chīzu kēki kudasai.",
+      "en": "Then I'll have the cheesecake, please.",
+      "audio_key": "customer_food_yes_2",
+      "next": "staff_confirm_1"
+    },
+    "customer_food_no_2": {
+      "id": "customer_food_no_2",
+      "speaker": "customer",
+      "ja": "大丈夫です、ドリンクだけで。",
+      "romaji": "Daijōbu desu, dorinku dake de.",
+      "en": "I'm fine, just the drink.",
+      "audio_key": "customer_food_no_2",
+      "next": "staff_confirm_1"
+    },
+
+    "staff_confirm_1": {
+      "id": "staff_confirm_1",
+      "speaker": "staff",
+      "ja": "かしこまりました。カフェラテですね。席でお待ちください〜。",
+      "romaji": "Kashikomarimashita. Kafe rate desu ne. Seki de omachi kudasai~.",
+      "en": "Got it — one café latte. Please wait at your seat.",
+      "audio_key": "staff_confirm_1",
+      "options": ["customer_wifi_ask_1", "customer_thanks_1"]
+    },
+    "customer_wifi_ask_1": {
+      "id": "customer_wifi_ask_1",
+      "speaker": "customer",
+      "ja": "すみません、Wi-Fiありますか？",
+      "romaji": "Sumimasen, waifai arimasu ka?",
+      "en": "Excuse me, do you have Wi-Fi?",
+      "audio_key": "customer_wifi_ask_1",
+      "next": "staff_wifi_answer_1"
+    },
+    "customer_thanks_1": {
+      "id": "customer_thanks_1",
+      "speaker": "customer",
+      "ja": "ありがとうございます！",
+      "romaji": "Arigatō gozaimasu!",
+      "en": "Thank you!",
+      "audio_key": "customer_thanks_1",
+      "next": "staff_serve_1"
+    },
+
+    "staff_wifi_answer_1": {
+      "id": "staff_wifi_answer_1",
+      "speaker": "staff",
+      "ja": "ありますよ。パスワードはレシートに書いてあります〜。",
+      "romaji": "Arimasu yo. Pasuwādo wa reshīto ni kaite arimasu~.",
+      "en": "Yes, we do. The password's written on your receipt.",
+      "audio_key": "staff_wifi_answer_1",
+      "options": ["customer_wifi_confuse_1", "customer_ok_1"]
+    },
+    "customer_wifi_confuse_1": {
+      "id": "customer_wifi_confuse_1",
+      "speaker": "customer",
+      "ja": "あ、どこですか？見えません。",
+      "romaji": "A, doko desu ka? Miemasen.",
+      "en": "Huh? Where? I can't see it.",
+      "audio_key": "customer_wifi_confuse_1",
+      "next": "staff_wifi_help_1"
+    },
+    "customer_ok_1": {
+      "id": "customer_ok_1",
+      "speaker": "customer",
+      "ja": "わかりました、ありがとうございます。",
+      "romaji": "Wakarimashita, arigatō gozaimasu.",
+      "en": "Got it, thank you.",
+      "audio_key": "customer_ok_1",
+      "next": "staff_serve_1"
+    },
+
+    "staff_wifi_help_1": {
+      "id": "staff_wifi_help_1",
+      "speaker": "staff",
+      "ja": "こちらです。小さい字ですみません〜。",
+      "romaji": "Kochira desu. Chiisai ji de sumimasen~.",
+      "en": "Right here. Sorry, it's in small print.",
+      "audio_key": "staff_wifi_help_1",
+      "options": ["customer_ok_2"]
+    },
+    "customer_ok_2": {
+      "id": "customer_ok_2",
+      "speaker": "customer",
+      "ja": "あっ、見えました！ありがとう。",
+      "romaji": "Ah, miemashita! Arigatō.",
+      "en": "Ah, I see it now! Thanks.",
+      "audio_key": "customer_ok_2",
+      "next": "staff_serve_1"
+    },
+
+    "staff_serve_1": {
+      "id": "staff_serve_1",
+      "speaker": "staff",
+      "ja": "お待たせしました〜。カフェラテです。",
+      "romaji": "Omatase shimashita~. Kafe rate desu.",
+      "en": "Here you go — your café latte.",
+      "audio_key": "staff_serve_1",
+      "options": ["customer_react_good_1", "customer_react_photo_1"]
+    },
+    "customer_react_good_1": {
+      "id": "customer_react_good_1",
+      "speaker": "customer",
+      "ja": "美味しそう！いただきます。",
+      "romaji": "Oishisō! Itadakimasu.",
+      "en": "Looks delicious! Let's dig in.",
+      "audio_key": "customer_react_good_1",
+      "next": "staff_after_meal_1"
+    },
+    "customer_react_photo_1": {
+      "id": "customer_react_photo_1",
+      "speaker": "customer",
+      "ja": "写真撮ってもいいですか？",
+      "romaji": "Shashin totte mo ii desu ka?",
+      "en": "Can I take a photo?",
+      "audio_key": "customer_react_photo_1",
+      "next": "staff_photo_response_1"
+    },
+
+    "staff_photo_response_1": {
+      "id": "staff_photo_response_1",
+      "speaker": "staff",
+      "ja": "もちろんです！ありがとうございます〜。",
+      "romaji": "Mochiron desu! Arigatō gozaimasu~.",
+      "en": "Of course! Thank you!",
+      "audio_key": "staff_photo_response_1",
+      "options": ["customer_thanks_2"]
+    },
+    "customer_thanks_2": {
+      "id": "customer_thanks_2",
+      "speaker": "customer",
+      "ja": "ありがとうございます！",
+      "romaji": "Arigatō gozaimasu!",
+      "en": "Thanks a lot!",
+      "audio_key": "customer_thanks_2",
+      "next": "staff_after_meal_1"
+    },
+
+    "staff_after_meal_1": {
+      "id": "staff_after_meal_1",
+      "speaker": "staff",
+      "ja": "お会計はカウンターでお願いします〜。",
+      "romaji": "Okaikei wa kauntā de onegai shimasu~.",
+      "en": "Please pay at the counter when you're ready.",
+      "audio_key": "staff_after_meal_1",
+      "options": ["customer_pay_1", "customer_pay_later_1"]
+    },
+    "customer_pay_1": {
+      "id": "customer_pay_1",
+      "speaker": "customer",
+      "ja": "今払います。",
+      "romaji": "Ima haraimasu.",
+      "en": "I'll pay now.",
+      "audio_key": "customer_pay_1",
+      "next": "staff_total_1"
+    },
+    "customer_pay_later_1": {
+      "id": "customer_pay_later_1",
+      "speaker": "customer",
+      "ja": "わかりました。あとで行きます。",
+      "romaji": "Wakarimashita. Ato de ikimasu.",
+      "en": "Got it — I'll go later.",
+      "audio_key": "customer_pay_later_1",
+      "next": "staff_end_farewell_1"
+    },
+
+    "staff_total_1": {
+      "id": "staff_total_1",
+      "speaker": "staff",
+      "ja": "合計650円になります。",
+      "romaji": "Gōkei roppyaku gojū en ni narimasu.",
+      "en": "That'll be 650 yen, please.",
+      "audio_key": "staff_total_1",
+      "options": ["customer_card_1", "customer_cash_1"]
+    },
+    "customer_cash_1": {
+      "id": "customer_cash_1",
+      "speaker": "customer",
+      "ja": "現金で払います。",
+      "romaji": "Genkin de haraimasu.",
+      "en": "I'll pay with cash.",
+      "audio_key": "customer_cash_1",
+      "next": "staff_end_farewell_1"
+    },
+    "customer_card_1": {
+      "id": "customer_card_1",
+      "speaker": "customer",
+      "ja": "カード使えますか？",
+      "romaji": "Kādo tsukaemasu ka?",
+      "en": "Can I use a card?",
+      "audio_key": "customer_card_1",
+      "next": "staff_card_answer_1"
+    },
+    "staff_card_answer_1": {
+      "id": "staff_card_answer_1",
+      "speaker": "staff",
+      "ja": "はい、こちらどうぞ〜。",
+      "romaji": "Hai, kochira dōzo~.",
+      "en": "Yes, please insert it here.",
+      "audio_key": "staff_card_answer_1",
+      "options": ["customer_endthanks_1"]
+    },
+    "customer_endthanks_1": {
+      "id": "customer_endthanks_1",
+      "speaker": "customer",
+      "ja": "ありがとうございました！",
+      "romaji": "Arigatō gozaimashita!",
+      "en": "Thank you very much!",
+      "audio_key": "customer_endthanks_1",
+      "next": "staff_end_farewell_1"
+    },
+
+    "staff_end_farewell_1": {
+      "id": "staff_end_farewell_1",
+      "speaker": "staff",
+      "ja": "ありがとうございました〜！またお越しください！",
+      "romaji": "Arigatō gozaimashita~! Mata okoshi kudasai!",
+      "en": "Thank you! Please come again!",
+      "audio_key": "staff_end_farewell_1",
+      "options": ["customer_farewell_1", "customer_farewell_2"]
+    },
+    "customer_farewell_1": {
+      "id": "customer_farewell_1",
+      "speaker": "customer",
+      "ja": "ありがとうございました！またきます！",
+      "romaji": "Arigatō gozaimashita! Mata kimasu!",
+      "en": "Thank you! I'll be back!",
+      "audio_key": "customer_farewell_1",
+      "next": null
+    },
+    "customer_farewell_2": {
+      "id": "customer_farewell_2",
+      "speaker": "customer",
+      "ja": "（軽く会釈して出る）",
+      "romaji": "(karuku eshaku shite deru)",
+      "en": "(Bows slightly and leaves.)",
+      "audio_key": "customer_farewell_2",
+      "next": null
+    },
+
+    "staff_takeout_1": {
+      "id": "staff_takeout_1",
+      "speaker": "staff",
+      "ja": "はい、テイクアウト大丈夫です。何にされますか？",
+      "romaji": "Hai, teiku auto daijōbu desu. Nani ni saremasu ka?",
+      "en": "Yes, takeout is fine. What would you like?",
+      "audio_key": "staff_takeout_1",
+      "options": ["customer_takeout_latte_1", "customer_takeout_matcha_1"]
+    },
+    "customer_takeout_latte_1": {
+      "id": "customer_takeout_latte_1",
+      "speaker": "customer",
+      "ja": "カフェラテください。",
+      "romaji": "Kafe rate kudasai.",
+      "en": "Café latte, please.",
+      "audio_key": "customer_takeout_latte_1",
+      "next": "staff_hot_iced_1"
+    },
+    "customer_takeout_matcha_1": {
+      "id": "customer_takeout_matcha_1",
+      "speaker": "customer",
+      "ja": "抹茶ラテください。",
+      "romaji": "Matcha rate kudasai.",
+      "en": "Matcha latte, please.",
+      "audio_key": "customer_takeout_matcha_1",
+      "next": "staff_hot_iced_1"
+    },
+
+    "staff_help_choice_1": {
+      "id": "staff_help_choice_1",
+      "speaker": "staff",
+      "ja": "店内でお召し上がりですか？テイクアウトですか？",
+      "romaji": "Tennai de omeshiagari desu ka? Teiku auto desu ka?",
+      "en": "Would you like to eat in or take out?",
+      "audio_key": "staff_help_choice_1",
+      "options": ["customer_sitin_1", "customer_takeout_ask_1"]
+    },
+    "customer_sitin_1": {
+      "id": "customer_sitin_1",
+      "speaker": "customer",
+      "ja": "店内で食べます。",
+      "romaji": "Tennai de tabemasu.",
+      "en": "I'll eat here.",
+      "audio_key": "customer_sitin_1",
+      "next": "staff_seat_ask_1"
+    },
+    "customer_takeout_ask_1": {
+      "id": "customer_takeout_ask_1",
+      "speaker": "customer",
+      "ja": "テイクアウトでお願いします。",
+      "romaji": "Teiku auto de onegai shimasu.",
+      "en": "Takeout, please.",
+      "audio_key": "customer_takeout_ask_1",
+      "next": "staff_takeout_1"
+    },
+
+    "staff_explain_drink_1": {
+      "id": "staff_explain_drink_1",
+      "speaker": "staff",
+      "ja": "カフェラテはコーヒーにミルクを入れたものです。",
+      "romaji": "Kafe rate wa kōhī ni miruku o ireta mono desu.",
+      "en": "Café latte is coffee with milk added.",
+      "audio_key": "staff_explain_drink_1",
+      "options": ["customer_order_ok_1"]
+    },
+    "customer_order_ok_1": {
+      "id": "customer_order_ok_1",
+      "speaker": "customer",
+      "ja": "じゃあ、それにします！",
+      "romaji": "Jā, sore ni shimasu!",
+      "en": "Then I'll have that!",
+      "audio_key": "customer_order_ok_1",
+      "next": "staff_hot_iced_1"
+    }
+  }
+}

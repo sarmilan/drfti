@@ -4,36 +4,10 @@ import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { ChevronLeft } from 'lucide-react';
 import PageTransition from '@/components/layout/PageTransition';
-import { getScenario } from '@/data/index';
+import { getScenariosByLanguage } from '@/data/index';
 import { formatDuration } from '@/lib/utils';
-import type { Scenario } from '@/data/types';
 
-const STUB_SCENARIOS: Omit<Scenario, 'language' | 'root_node_id' | 'cultural_notes' | 'nodes'>[] = [
-  {
-    id: 'convenience-store',
-    title: 'Convenience Store',
-    emoji: '🏪',
-    difficulty: 'beginner',
-    duration_minutes: 4,
-    description: 'Buy snacks, ask for a bag, pay and go.',
-  },
-  {
-    id: 'cafe',
-    title: 'Cafe',
-    emoji: '☕',
-    difficulty: 'beginner',
-    duration_minutes: 5,
-    description: 'Order a drink, ask about the menu, sit down.',
-  },
-  {
-    id: 'shoe-store',
-    title: 'Shoe Store',
-    emoji: '👟',
-    difficulty: 'conversational',
-    duration_minutes: 7,
-    description: 'Ask for your size, try them on, negotiate.',
-  },
-];
+const AUDIO_READY = new Set(['ramen-shop', 'convenience-store', 'cafe', 'shoe-store']);
 
 const difficultyStyle = {
   beginner: { bg: 'rgba(34,197,94,0.15)', text: '#4ade80', label: 'Beginner' },
@@ -49,10 +23,11 @@ interface ScenarioCardProps {
   description: string;
   active: boolean;
   index: number;
+  nodeCount?: number;
   onClick?: () => void;
 }
 
-function ScenarioCard({ id, title, emoji, difficulty, duration_minutes, description, active, index, onClick }: ScenarioCardProps) {
+function ScenarioCard({ id, title, emoji, difficulty, duration_minutes, description, active, index, nodeCount, onClick }: ScenarioCardProps) {
   const diff = difficultyStyle[difficulty];
   return (
     <motion.div
@@ -98,8 +73,15 @@ function ScenarioCard({ id, title, emoji, difficulty, duration_minutes, descript
           className="absolute inset-0 rounded-2xl flex items-center justify-center"
           style={{ background: 'rgba(10,10,15,0.6)' }}
         >
-          <span className="text-sm" style={{ color: '#6B7280' }}>Coming Soon</span>
+          <span className="text-sm" style={{ color: '#6B7280' }}>Audio Coming Soon</span>
         </div>
+      )}
+
+      {/* Dev: node count */}
+      {process.env.NODE_ENV === 'development' && nodeCount !== undefined && (
+        <span className="absolute bottom-2 right-3 text-xs" style={{ color: '#4B5563' }}>
+          {nodeCount} nodes
+        </span>
       )}
     </motion.div>
   );
@@ -107,14 +89,18 @@ function ScenarioCard({ id, title, emoji, difficulty, duration_minutes, descript
 
 export default function JaPage() {
   const router = useRouter();
-  const ramen = getScenario('ramen-shop');
+  const scenarios = getScenariosByLanguage('ja');
 
-  const allScenarios = [
-    ramen
-      ? { id: ramen.id, title: ramen.title, emoji: ramen.emoji, difficulty: ramen.difficulty, duration_minutes: ramen.duration_minutes, description: ramen.description, active: true }
-      : null,
-    ...STUB_SCENARIOS.map((s) => ({ ...s, active: false })),
-  ].filter(Boolean) as Array<{ id: string; title: string; emoji: string; difficulty: 'beginner' | 'conversational'; duration_minutes: number; description: string; active: boolean }>;
+  const allScenarios = scenarios.map((s) => ({
+    id: s.id,
+    title: s.title,
+    emoji: s.emoji,
+    difficulty: s.difficulty,
+    duration_minutes: s.duration_minutes,
+    description: s.description,
+    active: AUDIO_READY.has(s.id),
+    nodeCount: Object.keys(s.nodes).length,
+  }));
 
   return (
     <PageTransition>

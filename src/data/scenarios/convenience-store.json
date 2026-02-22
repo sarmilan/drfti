@@ -1,0 +1,525 @@
+{
+  "id": "convenience-store",
+  "title": "コンビニでの買い物 (Shopping at a Convenience Store)",
+  "emoji": "🏪",
+  "language": "ja",
+  "description": "A tourist shops at a Tokyo convenience store, interacting naturally with staff while buying an item and paying.",
+  "difficulty": "beginner",
+  "duration_minutes": 6,
+  "root_node_id": "staff_enter_1",
+  "cultural_notes": [
+    "Most convenience stores in Japan are open 24 hours and sell both food and household items.",
+    "Staff often greet customers loudly with 'いらっしゃいませ！' even if they're not looking directly at them.",
+    "ICカード (IC cards) like Suica or PASMO are the most common way to pay quickly.",
+    "Many stores ask if you want a plastic bag ('レジ袋') due to environmental fees.",
+    "Point cards are popular; staff often ask 'ポイントカードお持ちですか？'",
+    "It's polite to place money on the tray rather than handing it directly to the cashier."
+  ],
+  "nodes": {
+    "staff_enter_1": {
+      "id": "staff_enter_1",
+      "speaker": "staff",
+      "ja": "いらっしゃいませ〜！",
+      "romaji": "irasshaimase~!",
+      "en": "Welcome!",
+      "audio_key": "staff_enter_1",
+      "cultural_note": "Staff greet customers automatically upon entering.",
+      "options": ["customer_greet_1", "customer_nod_1", "customer_ignore_1"]
+    },
+
+    "customer_greet_1": {
+      "id": "customer_greet_1",
+      "speaker": "customer",
+      "ja": "こんにちは！",
+      "romaji": "konnichiwa!",
+      "en": "Hello!",
+      "audio_key": "customer_greet_1",
+      "next": "staff_idle_2"
+    },
+    "customer_nod_1": {
+      "id": "customer_nod_1",
+      "speaker": "customer",
+      "ja": "（うなずく）",
+      "romaji": "(unazuku)",
+      "en": "(Nods quietly)",
+      "audio_key": "customer_nod_1",
+      "next": "staff_idle_2"
+    },
+    "customer_ignore_1": {
+      "id": "customer_ignore_1",
+      "speaker": "customer",
+      "ja": "（気づかないふりをする）",
+      "romaji": "(kidzukanai furi o suru)",
+      "en": "(Pretends not to notice)",
+      "audio_key": "customer_ignore_1",
+      "next": "staff_idle_2"
+    },
+
+    "staff_idle_2": {
+      "id": "staff_idle_2",
+      "speaker": "staff",
+      "ja": "ごゆっくりどうぞ〜。",
+      "romaji": "goyukkuri douzo~.",
+      "en": "Please take your time.",
+      "audio_key": "staff_idle_2",
+      "options": ["customer_search_item", "customer_ask_where", "customer_observe_shelf"]
+    },
+
+    "customer_search_item": {
+      "id": "customer_search_item",
+      "speaker": "customer",
+      "ja": "（商品を探している）",
+      "romaji": "(shouhin o sagashite iru)",
+      "en": "(Looking around at the shelves.)",
+      "audio_key": "customer_search_item",
+      "next": "staff_offer_help_3"
+    },
+    "customer_ask_where": {
+      "id": "customer_ask_where",
+      "speaker": "customer",
+      "ja": "すみません、水どこですか？",
+      "romaji": "sumimasen, mizu doko desu ka?",
+      "en": "Excuse me, where's the water?",
+      "audio_key": "customer_ask_where",
+      "next": "staff_point_3"
+    },
+    "customer_observe_shelf": {
+      "id": "customer_observe_shelf",
+      "speaker": "customer",
+      "ja": "（他のお客さんを見て参考にする）",
+      "romaji": "(hoka no okyaku-san o mite sankou ni suru)",
+      "en": "(Watching how locals shop.)",
+      "audio_key": "customer_observe_shelf",
+      "next": "staff_offer_help_3"
+    },
+
+    "staff_offer_help_3": {
+      "id": "staff_offer_help_3",
+      "speaker": "staff",
+      "ja": "何かお探しですか？",
+      "romaji": "nanika o-sagashi desu ka?",
+      "en": "Looking for something?",
+      "audio_key": "staff_offer_help_3",
+      "options": ["customer_reply_yes_item", "customer_reply_no", "customer_reply_confused"]
+    },
+
+    "staff_point_3": {
+      "id": "staff_point_3",
+      "speaker": "staff",
+      "ja": "お水はあちらの冷蔵庫です。",
+      "romaji": "omizu wa achira no reizouko desu.",
+      "en": "The water's in that fridge over there.",
+      "audio_key": "staff_point_3",
+      "options": ["customer_reply_thanks", "customer_reply_another_item"]
+    },
+
+    "customer_reply_yes_item": {
+      "id": "customer_reply_yes_item",
+      "speaker": "customer",
+      "ja": "おにぎりありますか？",
+      "romaji": "onigiri arimasu ka?",
+      "en": "Do you have rice balls?",
+      "audio_key": "customer_reply_yes_item",
+      "next": "staff_point_onigiri_4"
+    },
+    "customer_reply_no": {
+      "id": "customer_reply_no",
+      "speaker": "customer",
+      "ja": "あ、大丈夫です。ありがとう！",
+      "romaji": "a, daijoubu desu. arigatou!",
+      "en": "Oh, it's okay. Thanks!",
+      "audio_key": "customer_reply_no",
+      "next": "staff_ok_4"
+    },
+    "customer_reply_confused": {
+      "id": "customer_reply_confused",
+      "speaker": "customer",
+      "ja": "えっと…日本語むずかしいです。",
+      "romaji": "etto... nihongo muzukashii desu.",
+      "en": "Um… Japanese is hard for me.",
+      "audio_key": "customer_reply_confused",
+      "next": "staff_simple_4"
+    },
+    "customer_reply_thanks": {
+      "id": "customer_reply_thanks",
+      "speaker": "customer",
+      "ja": "ありがとうございます！",
+      "romaji": "arigatou gozaimasu!",
+      "en": "Thank you!",
+      "audio_key": "customer_reply_thanks",
+      "next": "staff_ok_4"
+    },
+    "customer_reply_another_item": {
+      "id": "customer_reply_another_item",
+      "speaker": "customer",
+      "ja": "あと、サンドイッチはどこですか？",
+      "romaji": "ato, sandoicchi wa doko desu ka?",
+      "en": "Also, where are the sandwiches?",
+      "audio_key": "customer_reply_another_item",
+      "next": "staff_point_onigiri_4"
+    },
+
+    "staff_point_onigiri_4": {
+      "id": "staff_point_onigiri_4",
+      "speaker": "staff",
+      "ja": "おにぎりは入り口の横です！",
+      "romaji": "onigiri wa iriguchi no yoko desu!",
+      "en": "The rice balls are next to the entrance!",
+      "audio_key": "staff_point_onigiri_4",
+      "options": ["customer_reply_thanks", "customer_reply_follow_up_like"]
+    },
+
+    "staff_ok_4": {
+      "id": "staff_ok_4",
+      "speaker": "staff",
+      "ja": "はーい、ありがとうございます〜。",
+      "romaji": "haai, arigatou gozaimasu~.",
+      "en": "Alright, thank you~.",
+      "audio_key": "staff_ok_4",
+      "options": ["customer_move_to_register", "customer_continue_browsing"]
+    },
+
+    "staff_simple_4": {
+      "id": "staff_simple_4",
+      "speaker": "staff",
+      "ja": "OK! Onigiri, drink, snack?",
+      "romaji": "OK! Onigiri, drink, snack?",
+      "en": "OK! Onigiri, drink, snack?",
+      "audio_key": "staff_simple_4",
+      "options": ["customer_reply_yes_item", "customer_reply_no"]
+    },
+
+    "customer_reply_follow_up_like": {
+      "id": "customer_reply_follow_up_like",
+      "speaker": "customer",
+      "ja": "おすすめありますか？",
+      "romaji": "osusume arimasu ka?",
+      "en": "Do you have a recommendation?",
+      "audio_key": "customer_reply_follow_up_like",
+      "next": "staff_recommend_5"
+    },
+
+    "customer_move_to_register": {
+      "id": "customer_move_to_register",
+      "speaker": "customer",
+      "ja": "（レジに向かう）",
+      "romaji": "(reji ni mukau)",
+      "en": "(Walks to the register.)",
+      "audio_key": "customer_move_to_register",
+      "next": "staff_register_5"
+    },
+    "customer_continue_browsing": {
+      "id": "customer_continue_browsing",
+      "speaker": "customer",
+      "ja": "もうちょっと見ます。",
+      "romaji": "mou chotto mimasu.",
+      "en": "I'll look a bit more.",
+      "audio_key": "customer_continue_browsing",
+      "next": "staff_reminder_5"
+    },
+
+    "staff_recommend_5": {
+      "id": "staff_recommend_5",
+      "speaker": "staff",
+      "ja": "ツナマヨが人気ですよ！",
+      "romaji": "tsuna mayo ga ninki desu yo!",
+      "en": "Tuna-mayo is popular!",
+      "audio_key": "staff_recommend_5",
+      "options": ["customer_reply_thanks", "customer_reply_same_as_other"]
+    },
+
+    "staff_reminder_5": {
+      "id": "staff_reminder_5",
+      "speaker": "staff",
+      "ja": "ごゆっくりどうぞ〜！",
+      "romaji": "goyukkuri douzo~!",
+      "en": "Take your time~!",
+      "audio_key": "staff_reminder_5",
+      "options": ["customer_move_to_register"]
+    },
+
+    "staff_register_5": {
+      "id": "staff_register_5",
+      "speaker": "staff",
+      "ja": "ポイントカードお持ちですか？",
+      "romaji": "pointo kaado omochi desu ka?",
+      "en": "Do you have a point card?",
+      "audio_key": "staff_register_5",
+      "options": ["customer_yes_pointcard", "customer_no_pointcard"]
+    },
+
+    "customer_reply_same_as_other": {
+      "id": "customer_reply_same_as_other",
+      "speaker": "customer",
+      "ja": "あの人と同じものをください。",
+      "romaji": "ano hito to onaji mono o kudasai.",
+      "en": "I'll have the same as that person.",
+      "audio_key": "customer_reply_same_as_other",
+      "next": "staff_ok_4"
+    },
+
+    "customer_yes_pointcard": {
+      "id": "customer_yes_pointcard",
+      "speaker": "customer",
+      "ja": "あります！",
+      "romaji": "arimasu!",
+      "en": "Yes, I do!",
+      "audio_key": "customer_yes_pointcard",
+      "next": "staff_payment_6"
+    },
+    "customer_no_pointcard": {
+      "id": "customer_no_pointcard",
+      "speaker": "customer",
+      "ja": "ないです。",
+      "romaji": "nai desu.",
+      "en": "No, I don't.",
+      "audio_key": "customer_no_pointcard",
+      "next": "staff_payment_6"
+    },
+
+    "staff_payment_6": {
+      "id": "staff_payment_6",
+      "speaker": "staff",
+      "ja": "お会計○○円です。お支払い方法は？",
+      "romaji": "okaikei ○○ en desu. oshiharai houhou wa?",
+      "en": "That'll be ○○ yen. How would you like to pay?",
+      "audio_key": "staff_payment_6",
+      "options": ["customer_pay_ic", "customer_pay_cash", "customer_pay_confused"]
+    },
+
+    "customer_pay_ic": {
+      "id": "customer_pay_ic",
+      "speaker": "customer",
+      "ja": "Suicaで。",
+      "romaji": "Suica de.",
+      "en": "With Suica.",
+      "audio_key": "customer_pay_ic",
+      "next": "staff_ic_tap_7"
+    },
+    "customer_pay_cash": {
+      "id": "customer_pay_cash",
+      "speaker": "customer",
+      "ja": "現金でお願いします。",
+      "romaji": "genkin de onegaishimasu.",
+      "en": "Cash, please.",
+      "audio_key": "customer_pay_cash",
+      "next": "staff_cash_tray_7"
+    },
+    "customer_pay_confused": {
+      "id": "customer_pay_confused",
+      "speaker": "customer",
+      "ja": "えっと…カードOKですか？",
+      "romaji": "etto... kaado OK desu ka?",
+      "en": "Um… can I use a card?",
+      "audio_key": "customer_pay_confused",
+      "next": "staff_card_ok_7"
+    },
+
+    "staff_ic_tap_7": {
+      "id": "staff_ic_tap_7",
+      "speaker": "staff",
+      "ja": "こちらにタッチしてください。",
+      "romaji": "kochira ni tacchi shite kudasai.",
+      "en": "Please tap here.",
+      "audio_key": "staff_ic_tap_7",
+      "options": ["customer_tap_success", "customer_tap_fail"]
+    },
+    "staff_cash_tray_7": {
+      "id": "staff_cash_tray_7",
+      "speaker": "staff",
+      "ja": "このトレーにお願いします。",
+      "romaji": "kono tore ni onegaishimasu.",
+      "en": "Please put it on the tray.",
+      "audio_key": "staff_cash_tray_7",
+      "options": ["customer_give_cash", "customer_count_slowly"]
+    },
+    "staff_card_ok_7": {
+      "id": "staff_card_ok_7",
+      "speaker": "staff",
+      "ja": "はい、大丈夫です！こちらにどうぞ。",
+      "romaji": "hai, daijoubu desu! kochira ni douzo.",
+      "en": "Yes, that's fine! Right this way.",
+      "audio_key": "staff_card_ok_7",
+      "options": ["customer_use_card"]
+    },
+
+    "customer_tap_success": {
+      "id": "customer_tap_success",
+      "speaker": "customer",
+      "ja": "ピッ！（成功）",
+      "romaji": "pi! (seikou)",
+      "en": "(Tap successful.)",
+      "audio_key": "customer_tap_success",
+      "next": "staff_bag_offer_8"
+    },
+    "customer_tap_fail": {
+      "id": "customer_tap_fail",
+      "speaker": "customer",
+      "ja": "あれ？もう一回？",
+      "romaji": "are? mou ikkai?",
+      "en": "Hm? One more time?",
+      "audio_key": "customer_tap_fail",
+      "next": "staff_tap_retry_8"
+    },
+    "customer_give_cash": {
+      "id": "customer_give_cash",
+      "speaker": "customer",
+      "ja": "はい。",
+      "romaji": "hai.",
+      "en": "Here.",
+      "audio_key": "customer_give_cash",
+      "next": "staff_cash_change_8"
+    },
+    "customer_count_slowly": {
+      "id": "customer_count_slowly",
+      "speaker": "customer",
+      "ja": "えっと…五百、六百…",
+      "romaji": "etto... gohyaku, roppyaku...",
+      "en": "Um… five hundred, six hundred…",
+      "audio_key": "customer_count_slowly",
+      "next": "staff_cash_change_8"
+    },
+    "customer_use_card": {
+      "id": "customer_use_card",
+      "speaker": "customer",
+      "ja": "お願いします。",
+      "romaji": "onegaishimasu.",
+      "en": "Please.",
+      "audio_key": "customer_use_card",
+      "next": "staff_bag_offer_8"
+    },
+
+    "staff_tap_retry_8": {
+      "id": "staff_tap_retry_8",
+      "speaker": "staff",
+      "ja": "もう一度お願いします。",
+      "romaji": "mou ichido onegaishimasu.",
+      "en": "Please try again.",
+      "audio_key": "staff_tap_retry_8",
+      "options": ["customer_tap_success"]
+    },
+    "staff_cash_change_8": {
+      "id": "staff_cash_change_8",
+      "speaker": "staff",
+      "ja": "〇円お預かりします。お釣り〇円です。",
+      "romaji": "○ en o-azukari shimasu. otsuri ○ en desu.",
+      "en": "I received ○ yen. Your change is ○ yen.",
+      "audio_key": "staff_cash_change_8",
+      "options": ["customer_thanks"]
+    },
+    "staff_bag_offer_8": {
+      "id": "staff_bag_offer_8",
+      "speaker": "staff",
+      "ja": "袋入りますか？",
+      "romaji": "fukuro irimasu ka?",
+      "en": "Would you like a bag?",
+      "audio_key": "staff_bag_offer_8",
+      "options": ["customer_yes_bag", "customer_no_bag", "customer_confused_bag"]
+    },
+
+    "customer_thanks": {
+      "id": "customer_thanks",
+      "speaker": "customer",
+      "ja": "ありがとうございます。",
+      "romaji": "arigatou gozaimasu.",
+      "en": "Thank you.",
+      "audio_key": "customer_thanks",
+      "next": "staff_bag_offer_8"
+    },
+
+    "customer_yes_bag": {
+      "id": "customer_yes_bag",
+      "speaker": "customer",
+      "ja": "はい、お願いします。",
+      "romaji": "hai, onegaishimasu.",
+      "en": "Yes, please.",
+      "audio_key": "customer_yes_bag",
+      "next": "staff_bag_fee_9"
+    },
+    "customer_no_bag": {
+      "id": "customer_no_bag",
+      "speaker": "customer",
+      "ja": "大丈夫です。",
+      "romaji": "daijoubu desu.",
+      "en": "No, it's okay.",
+      "audio_key": "customer_no_bag",
+      "next": "staff_end_9"
+    },
+    "customer_confused_bag": {
+      "id": "customer_confused_bag",
+      "speaker": "customer",
+      "ja": "え？なに？",
+      "romaji": "e? nani?",
+      "en": "Huh? What?",
+      "audio_key": "customer_confused_bag",
+      "next": "staff_explain_bag_9"
+    },
+
+    "staff_bag_fee_9": {
+      "id": "staff_bag_fee_9",
+      "speaker": "staff",
+      "ja": "袋は3円かかりますがよろしいですか？",
+      "romaji": "fukuro wa san-en kakarimasu ga yoroshii desu ka?",
+      "en": "The bag costs 3 yen, is that okay?",
+      "audio_key": "staff_bag_fee_9",
+      "options": ["customer_yes_bag_fee", "customer_no_bag_afterfee"]
+    },
+    "staff_explain_bag_9": {
+      "id": "staff_explain_bag_9",
+      "speaker": "staff",
+      "ja": "袋、プラスチックバッグ、3円です。",
+      "romaji": "fukuro, purasuchikku baggu, san-en desu.",
+      "en": "A plastic bag — it's 3 yen.",
+      "audio_key": "staff_explain_bag_9",
+      "options": ["customer_yes_bag", "customer_no_bag"]
+    },
+
+    "customer_yes_bag_fee": {
+      "id": "customer_yes_bag_fee",
+      "speaker": "customer",
+      "ja": "はい、お願いします。",
+      "romaji": "hai, onegaishimasu.",
+      "en": "Yes, please.",
+      "audio_key": "customer_yes_bag_fee",
+      "next": "staff_end_9"
+    },
+    "customer_no_bag_afterfee": {
+      "id": "customer_no_bag_afterfee",
+      "speaker": "customer",
+      "ja": "あ、じゃあいいです！",
+      "romaji": "a, jaa ii desu!",
+      "en": "Oh, in that case, no thanks!",
+      "audio_key": "customer_no_bag_afterfee",
+      "next": "staff_end_9"
+    },
+
+    "staff_end_9": {
+      "id": "staff_end_9",
+      "speaker": "staff",
+      "ja": "ありがとうございました〜！",
+      "romaji": "arigatou gozaimashita~!",
+      "en": "Thank you very much!",
+      "audio_key": "staff_end_9",
+      "options": ["customer_goodbye", "customer_silent_exit"]
+    },
+
+    "customer_goodbye": {
+      "id": "customer_goodbye",
+      "speaker": "customer",
+      "ja": "ありがとうございました！",
+      "romaji": "arigatou gozaimashita!",
+      "en": "Thank you!",
+      "audio_key": "customer_goodbye",
+      "next": null
+    },
+    "customer_silent_exit": {
+      "id": "customer_silent_exit",
+      "speaker": "customer",
+      "ja": "（軽く会釈して出る）",
+      "romaji": "(karuku eshaku shite deru)",
+      "en": "(Bows slightly and leaves.)",
+      "audio_key": "customer_silent_exit",
+      "next": null
+    }
+  }
+}
